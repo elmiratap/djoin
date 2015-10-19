@@ -1,0 +1,24 @@
+Local Datastore 
+Parse also lets you store objects in a local datastore on the Android device itself. 
+You can use this for data that doesn't need to be saved to the cloud, but this is especially 
+useful for temporarily storing data so that it can be synced later. 
+To enable the datastore, call Parse.enableLocalDatastore() in your Application 
+constructor before calling Parse.initialize(). Once the local datastore is enabled, 
+you can store an object by pinning it.
+
+ParseObject gameScore = new ParseObject("GameScore");
+gameScore.put("score", 1337);
+gameScore.put("playerName", "Sean Plott");
+gameScore.put("cheatMode", false);
+gameScore.pinInBackground();
+
+As with saving, this recursively stores every object and file that gameScore points to, 
+if it has been fetched from the cloud. Whenever you save changes to the object, or fetch 
+new changes from Parse, the copy in the datastore will be automatically updated, so you 
+don't have to worry about it.
+
+Unpinning Objects
+When you are done with the object and no longer need to keep it on the device, you can 
+release it with unpinInBackground.
+
+gameScore.unpinInBackground();
