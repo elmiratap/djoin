@@ -14,6 +14,13 @@
         android:text="Register"
         />
 
+    <TextView
+        android:id="@+id/tvRegisterError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sorry, that username is already in use."
+        android:textColor="#FF0000" />
+
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"

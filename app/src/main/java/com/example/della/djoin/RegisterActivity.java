@@ -3,10 +3,9 @@ package com.example.della.djoin;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +17,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
     // Title at the top of the page
     private TextView tvTitle;
+
+    // Error message
+    private TextView tvRegisterError;
 
     // Placeholder text for username and password
     private EditText etUsername;
@@ -40,9 +42,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         userColumns = new String[] {dbHelper.USERNAME, dbHelper.PASSWORD, dbHelper.NAME,
                 dbHelper.USER_CAR_MAKE, dbHelper.USER_CAR_MODEL, dbHelper.USER_CAR_COLOR};
 
+        // initializes all views from the activity_register xml file
         setContentView(R.layout.activity_register);
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvRegisterError = (TextView) findViewById(R.id.tvRegisterError);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnRegister = (Button) findViewById(R.id.btnRegister);
@@ -50,6 +54,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
         dbHelper = new DBHelper(this);
 
+        tvRegisterError.setVisibility(View.GONE);
     }
 
     @Override
@@ -66,18 +71,28 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)  {
         ContentValues cv = new ContentValues(2);
         cv.put(dbHelper.USERNAME, etUsername.getText().toString());
         cv.put(dbHelper.PASSWORD, etPassword.getText().toString());
-        db.insert(dbHelper.TABLE_USER, null, cv);
-        cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-        etUsername.setText(null); // TODO redirect?!
-        etPassword.setText(null);
-        Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-                "username = ?", new String[]{"della"}, null, null, null);
-        queryres.moveToFirst();
-        Log.d("res: ", DatabaseUtils.dumpCursorToString(queryres));
+
+        try {
+            // makes sure that primary key constraint isn't violated
+            db.insertOrThrow(dbHelper.TABLE_USER, null, cv);
+            cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
+
+            etUsername.setText(null); // TODO transition, redirect
+            etPassword.setText(null);
+            tvRegisterError.setVisibility(View.GONE);
+//            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
+//                    "username = ?", new String[]{"della"}, null, null, null);
+//            queryres.moveToFirst();
+        // if primary key constraint is violated
+        } catch (SQLiteConstraintException e) {
+            // tells user the username they entered is already taken
+            tvRegisterError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
+            return;
+        }
     }
 
     @Override
