@@ -20,6 +20,10 @@
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register_activity" >
         </activity>
+        <activity
+            android:name=".AddTrip"
+            android:label="@string/title_activity_add_trip" >
+        </activity>
     </application>
 
 </manifest>

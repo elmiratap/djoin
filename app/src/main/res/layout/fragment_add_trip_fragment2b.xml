@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.della.djoin.AddTripFragment2b">
+
+    <EditText
+        android:id="@+id/etDepartureDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Departure Date"
+        />
+    <EditText
+        android:id="@+id/etDepartureTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Departure Time"
+        />
+    <EditText
+        android:id="@+id/etReturnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Return Date"
+        />
+    <TextView android:id="@+id/ddCheckBoxText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Same as departure date"
+        />
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ddCheckBoxText"/>
+
+    <EditText
+        android:id="@+id/etReturnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Return Time"
+        />
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"/>
+
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"-->
+<!--android:name="com.example.della.djoin.AddTripFragment1" android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent" tools:layout="@layout/fragment_add_trip_fragment1" -->
+<!--/>-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.della.djoin.AddTrip">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/addTrip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add A Trip"
+        />
+    <fragment
+        android:id="@+id/addTrip1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.della.djoin.AddTripFragment1"/>
+    <fragment
+        android:id="@+id/addTrip2a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.della.djoin.AddTripFragment2a"/>
+    <fragment
+        android:id="@+id/addTrip2b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.della.djoin.AddTripFragment2b"/>
+    <fragment
+        android:id="@+id/addTrip3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.della.djoin.AddTripFragment3"/>
+</RelativeLayout>
