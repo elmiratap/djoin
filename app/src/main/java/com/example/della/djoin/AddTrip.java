@@ -13,7 +13,7 @@ public class AddTrip extends Activity {
     private TextView tvTitle;
     // Declare the add trip screen fragments
     Fragment addTripFrag1;
-    Fragment addTripFrag2;
+    Fragment addTripFrag2a;
     Fragment addTripFrag3;
 
     @Override
@@ -22,8 +22,8 @@ public class AddTrip extends Activity {
         setContentView(R.layout.activity_add_trip);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         addTripFrag1 = new AddTripFragment1();
-        addTripFrag2 = new AddTripFragment2a();
-        addTripFrag3 = new AddTripFragment3();
+//        addTripFrag2a = new AddTripFragment2a();
+//        addTripFrag3 = new AddTripFragment3();
 
 
         //

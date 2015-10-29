@@ -16,7 +16,7 @@ public class AddTripFragment1 extends Fragment implements View.OnClickListener {
 
     View view;
     Button nextButton;
-    Fragment addTripFragment2;
+    Fragment addTripFragment2a;
     public AddTripFragment1() {
     }
 
@@ -35,8 +35,8 @@ public class AddTripFragment1 extends Fragment implements View.OnClickListener {
         // Switch to the next fragment upon tapping the next button
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        addTripFragment2 = new AddTripFragment2a();
-        ft.replace(R.id.addTrip1, addTripFragment2);
+        addTripFragment2a = new AddTripFragment2a();
+        ft.replace(R.id.addTrip1, addTripFragment2a);
         ft.addToBackStack(null);
         ft.commit();
     }

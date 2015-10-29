@@ -32,7 +32,8 @@
         android:id="@+id/addTrip2a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        class="com.example.della.djoin.AddTripFragment2a"/>
+        class="com.example.della.djoin.AddTripFragment2a"
+        android:clickable="true"/>
     <fragment
         android:id="@+id/addTrip2b"
         android:layout_width="wrap_content"
