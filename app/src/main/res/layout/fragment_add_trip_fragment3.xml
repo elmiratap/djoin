@@ -1,15 +1,55 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:id="@+id/aTFrag3"
     tools:context="com.example.della.djoin.AddTripFragment3">
 
-    <TextView android:id="@+id/tvAddFrag3"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/availableSeats"
         android:layout_width="wrap_content"
-        android:text="fragment 3"
+        android:layout_height="wrap_content"
+        android:hint="Available seats"
         />
+    <EditText
+        android:id="@+id/carMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Car make"
+        />
+    <EditText
+        android:id="@+id/carModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Car model"
+        />
+    <EditText
+        android:id="@+id/carColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Car color"
+        />
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use saved car"/>
+    <EditText
+        android:id="@+id/etReturnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Additional information (140 characters)"
+        android:lines="3"
+        android:maxLines="5"
+        android:maxLength="140"
+        />
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"/>
 
-</RelativeLayout>
+</LinearLayout>

@@ -24,6 +24,10 @@
             android:name=".AddTrip"
             android:label="@string/title_activity_add_trip" >
         </activity>
+        <activity
+            android:name=".MyTrips"
+            android:label="@string/title_activity_my_trips" >
+        </activity>
     </application>
 
 </manifest>

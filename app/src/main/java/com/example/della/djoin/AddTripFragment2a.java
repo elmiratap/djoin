@@ -1,11 +1,10 @@
 package com.example.della.djoin;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +19,7 @@ import android.widget.TextView;
  * Use the {@link AddTripFragment2a#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddTripFragment2a extends Fragment implements View.OnClickListener{
+public class AddTripFragment2a extends Fragment {
 
     private TextView tvAddFrag2;
 
@@ -63,22 +62,42 @@ public class AddTripFragment2a extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View view;
         view = inflater.inflate(R.layout.fragment_add_trip_fragment2a, container, false);
+
+    /*here is an implementation*/
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return true;
+            }
+        });
+
+
         nextButton = (Button) view.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(this);
+        nextButton.setOnClickListener(buttonFragOnClickListener);
+        //return view;
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        // Switch to the next fragment upon tapping the next button
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        addTripFragment3 = new AddTripFragment3();
-        ft.replace(R.id.addTrip1, addTripFragment3);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
+        Fragment nextFrag;
+        @Override
+        public void onClick(View v) {
+            if(v == nextButton) {
+                nextFrag = new AddTripFragment2b();
+                // Create new transaction
+                FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment container view with this fragment
+                // and add the transaction to the back stack.
+                trans.replace(R.id.addTrip, nextFrag);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        }
+
+    };
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {

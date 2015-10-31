@@ -20,7 +20,7 @@ import android.widget.Button;
  * Use the {@link AddTripFragment2b#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddTripFragment2b extends Fragment implements View.OnClickListener {
+public class AddTripFragment2b extends Fragment {
 
     View view;
     Button nextButton;
@@ -59,16 +59,6 @@ public class AddTripFragment2b extends Fragment implements View.OnClickListener 
         // Required empty public constructor
     }
 
-    @Override
-    public void onClick(View v) {
-        // Switch to the next fragment upon tapping the next button
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        addTripFragment3 = new AddTripFragment3();
-        ft.replace(R.id.addTrip1, addTripFragment3);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,9 +66,27 @@ public class AddTripFragment2b extends Fragment implements View.OnClickListener 
 
         view = inflater.inflate(R.layout.fragment_add_trip_fragment2b, container, false);
         nextButton = (Button) view.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(this);
+        nextButton.setOnClickListener(buttonFragOnClickListener);
         return view;
     }
+    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
+        Fragment nextFrag;
+        @Override
+        public void onClick(View v) {
+            if(v == nextButton) {
+                nextFrag = new AddTripFragment3();
+                // Create new transaction
+                FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment container view with this fragment
+                // and add the transaction to the back stack.
+                trans.replace(R.id.addTrip, nextFrag);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        }
+
+    };
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {

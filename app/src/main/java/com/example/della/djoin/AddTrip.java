@@ -21,14 +21,10 @@ public class AddTrip extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
-        addTripFrag1 = new AddTripFragment1();
-//        addTripFrag2a = new AddTripFragment2a();
-//        addTripFrag3 = new AddTripFragment3();
 
-
-        //
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
+        addTripFrag1 = new AddTripFragment1();
         ft.add(R.id.addTrip, addTripFrag1); // Display the first fragment
         ft.addToBackStack(null); // nothing to add yet
         ft.commit(); // Ready to show fragment
