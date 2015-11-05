@@ -97,15 +97,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-//        ContentValues cv = new ContentValues(2);
-//        cv.put(dbHelper.USERNAME, etUsername.getText().toString());
-//        cv.put(dbHelper.PASSWORD, etPassword.getText().toString());
-        String enteredUserName = etUsername.getText().toString();
-        String enteredPassword = etPassword.getText().toString();
+        // query to check if the entered username and password combo are in the table
+        Cursor mCursor = db.rawQuery("SELECT USERNAME, PASSWORD FROM " +
+                                    dbHelper.TABLE_USER + " WHERE USERNAME=? AND password=?",
+                                    new String[]{etUsername.getText().toString(), etPassword.getText().toString()});
 
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + dbHelper.TABLE_USER + " WHERE    username=username AND password=?", new String[]{enteredUserName,enteredPassword});
-
-        if (mCursor != null)
+        // checks to see if cursor is able to find a record that matches the query
+        if (mCursor.moveToFirst())
         {
            Log.d("Valid!", "yay"); // Let them log in - go to my trips
 

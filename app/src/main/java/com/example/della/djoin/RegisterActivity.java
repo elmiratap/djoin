@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -55,6 +56,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         dbHelper = new DBHelper(this);
 
         tvRegisterError.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -84,13 +86,16 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             etUsername.setText(null); // TODO transition, redirect
             etPassword.setText(null);
             tvRegisterError.setVisibility(View.GONE);
+            dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
+            Log.d("results", dbHelper.getTableAsString(db, dbHelper.TABLE_USER));
 //            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
 //                    "username = ?", new String[]{"della"}, null, null, null);
 //            queryres.moveToFirst();
         // if primary key constraint is violated
         } catch (SQLiteConstraintException e) {
             // tells user the username they entered is already taken
-            tvRegisterError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
+            Log.d("results", dbHelper.getTableAsString(db, dbHelper.TABLE_USER));
+                   tvRegisterError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
             return;
         }
     }
