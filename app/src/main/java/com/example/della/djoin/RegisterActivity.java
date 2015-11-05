@@ -79,7 +79,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         try {
             // makes sure that primary key constraint isn't violated
             db.insertOrThrow(dbHelper.TABLE_USER, null, cv);
-            cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
+            //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
 
             etUsername.setText(null); // TODO transition, redirect
             etPassword.setText(null);

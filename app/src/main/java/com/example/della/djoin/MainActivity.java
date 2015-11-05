@@ -97,6 +97,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+//        ContentValues cv = new ContentValues(2);
+//        cv.put(dbHelper.USERNAME, etUsername.getText().toString());
+//        cv.put(dbHelper.PASSWORD, etPassword.getText().toString());
         String enteredUserName = etUsername.getText().toString();
         String enteredPassword = etPassword.getText().toString();
 
