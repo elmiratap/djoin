@@ -12,9 +12,9 @@ public class AddTrip extends Activity {
 
     private TextView tvTitle;
     // Declare the add trip screen fragments
-    Fragment addTripFrag1;
-    Fragment addTripFrag2a;
-    Fragment addTripFrag3;
+    public Fragment addTripFrag1;
+    public Fragment addTripFrag2a;
+    public Fragment addTripFrag3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class AddTrip extends Activity {
         ft.add(R.id.addTrip, addTripFrag1); // Display the first fragment
         ft.addToBackStack(null); // nothing to add yet
         ft.commit(); // Ready to show fragment
+
 
     }
 }

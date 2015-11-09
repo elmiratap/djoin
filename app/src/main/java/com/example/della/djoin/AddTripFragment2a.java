@@ -1,14 +1,21 @@
 package com.example.della.djoin;
 
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 
 /**
@@ -19,13 +26,16 @@ import android.widget.TextView;
  * Use the {@link AddTripFragment2a#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddTripFragment2a extends Fragment {
+public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTimeSetListener {
 
     private TextView tvAddFrag2;
 
-    View view;
-    Button nextButton;
-    Fragment addTripFragment3;
+    private View view;
+    private Button nextButton;
+    public Fragment addTripFragment3;
+    private EditText etDepartureDate;
+    private EditText etDepartureTime;
+    private Calendar cal;
 
     public AddTripFragment2a() {
     }
@@ -76,9 +86,65 @@ public class AddTripFragment2a extends Fragment {
 
         nextButton = (Button) view.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(buttonFragOnClickListener);
+//        etDepartureDate.setOnClickListener(this);
+//        etDepartureTime.setOnClickListener(this);
+        etDepartureDate = (EditText) view.findViewById(R.id.etDepartureDate);
+        etDepartureDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                showDatePicker();
+            }
+        });
+        this.cal = Calendar.getInstance();
+
         //return view;
         return view;
     }
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        /**
+         * Set Up Current Date Into dialog
+         */
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        /**
+         * Set Call back to capture selected date
+         */
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
+    }
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            etDepartureDate.setText(String.valueOf(monthOfYear+1) + "-" + String.valueOf(dayOfMonth)
+                    + "-" + String.valueOf(year));
+        }
+    };
+
+
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+    }
+
+    DatePickerDialog.OnDateSetListener datePickerListener=new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker arg0, int year, int month, int day) {
+
+            cal.set(Calendar.YEAR,year);
+            cal.set(Calendar.MONTH,month);
+            cal.set(Calendar.DAY_OF_MONTH,day);
+        }
+    };
 
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;

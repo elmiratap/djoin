@@ -30,6 +30,23 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USER_CAR_MODEL = "user_carModel";
     public static final String USER_CAR_COLOR = "user_carColor";
 
+    // Trip table column names
+    public static final String TRIP_ID = "trip_id";
+    public static final String CREATED_BY = "created_by"; // username
+    public static final String START_LOCATION = "start_loc";
+    public static final String DESTINATION = "desination";
+    public static final String ROUND_TRIP = "round_trip";
+    public static final String DEPARTURE_DATE = "departure_date";
+    public static final String RETURN_DATE = "return_date";
+    public static final String DEPARTURE_TIME = "departure_time";
+    public static final String RETURN_TIME = "return_time";
+    public static final String DESCRIPTION = "description";
+    public static final String CAR_MAKE = "car_make";
+    public static final String CAR_MODEL = "car_model";
+    public static final String CAR_COLOR = "car_color";
+    public static final String NUM_PASSENGERS = "num_passengers";
+
+
     // Table create statements
     private static final String CREATE_TABLE_USER = "CREATE TABLE "
             + TABLE_USER
@@ -41,6 +58,25 @@ public class DBHelper extends SQLiteOpenHelper {
             + USER_CAR_COLOR + " TEXT"
             + ")";
 
+    private static final String CREATE_TABLE_TRIP = "CREATE TABLE "
+            + TABLE_TRIP
+            + "(" + TRIP_ID + " TEXT PRIMARY KEY,"
+            + CREATED_BY + " TEXT,"
+            + START_LOCATION + " TEXT,"
+            + DESTINATION + " TEXT,"
+            + ROUND_TRIP + " BIT,"
+            + DEPARTURE_DATE + " DATE,"
+            + RETURN_DATE + " DATE,"
+            + DEPARTURE_TIME + " TIME,"
+            + RETURN_TIME + " TIME,"
+            + DESCRIPTION + " TEXT,"
+            + CAR_MAKE + " TEXT,"
+            + CAR_MODEL + " TEXT,"
+            + CAR_COLOR + " TEXT,"
+            + NUM_PASSENGERS + " INT,"
+            + ")";
+
+
     // Database context
     Context context;
 
@@ -51,10 +87,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // Create required tables
         db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_TRIP);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // On upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TRIP);
 
         //Create new tables
         onCreate(db);

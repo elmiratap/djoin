@@ -16,6 +16,7 @@ public class AddTripFragment1 extends Fragment {
     View view;
     Fragment addTripFragment2a;
     Button nextButton;
+
     public AddTripFragment1() {
     }
 
@@ -30,7 +31,6 @@ public class AddTripFragment1 extends Fragment {
         nextButton.setOnClickListener(buttonFragOnClickListener);
         return view;
     }
-
 
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
