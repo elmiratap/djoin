@@ -13,18 +13,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Departure Date"
+        android:focusable="false"
         />
     <EditText
         android:id="@+id/etDepartureTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Departure Time"
+        android:focusable="false"
         />
     <EditText
         android:id="@+id/etReturnDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Return Date"
+        android:focusable="false"
         />
     <CheckBox
         android:id="@+id/checkBox"
@@ -37,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Return Time"
+        android:focusable="false"
         />
     <Button
         android:id="@+id/nextButton"

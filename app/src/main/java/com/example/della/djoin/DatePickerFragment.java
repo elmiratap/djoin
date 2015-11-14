@@ -1,6 +1,5 @@
 package com.example.della.djoin;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -20,7 +19,6 @@ public class DatePickerFragment extends DialogFragment {
         ondateSet = ondate;
     }
 
-    @SuppressLint("NewApi")
     @Override
     public void setArguments(Bundle args) {
         super.setArguments(args);

@@ -73,7 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + CAR_MAKE + " TEXT,"
             + CAR_MODEL + " TEXT,"
             + CAR_COLOR + " TEXT,"
-            + NUM_PASSENGERS + " INT,"
+            + NUM_PASSENGERS + " INT"
             + ")";
 
 

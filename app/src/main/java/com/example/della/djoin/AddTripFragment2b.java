@@ -1,8 +1,10 @@
 package com.example.della.djoin;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,6 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
 
 
 /**
@@ -25,6 +32,11 @@ public class AddTripFragment2b extends Fragment {
     View view;
     Button nextButton;
     Fragment addTripFragment3;
+    private EditText etDepartureDate;
+    private EditText etDepartureTime;
+    private EditText etReturnDate;
+    private EditText etReturnTime;
+    private Calendar cal;
 
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,15 +78,114 @@ public class AddTripFragment2b extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_add_trip_fragment2b, container, false);
         nextButton = (Button) view.findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(buttonFragOnClickListener);
+        nextButton.setOnClickListener(buttonFragmentOnClickListener);
+        etDepartureDate = (EditText) view.findViewById(R.id.etDepartureDate);
+        etDepartureTime = (EditText) view.findViewById(R.id.etDepartureTime);
+        etReturnTime = (EditText) view.findViewById(R.id.etReturnTime);
+        etReturnDate = (EditText) view.findViewById(R.id.etReturnDate);
+        etReturnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                showDatePicker();
+            }
+        });
+        etDepartureDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                showDatePicker();
+            }
+        });
+        etDepartureTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePicker();
+            }
+        });
+        etReturnTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                showTimePicker();
+            }
+        });
+        this.cal = Calendar.getInstance();
+
         return view;
     }
-    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
+    Button.OnClickListener buttonFragmentOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
         @Override
         public void onClick(View v) {
             if(v == nextButton) {
                 nextFrag = new AddTripFragment3();
+                // Create new transaction
+                FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment container view with this fragment
+                // and add the transaction to the back stack.
+                trans.replace(R.id.addTrip, nextFrag);
+                trans.addToBackStack(null);
+                trans.commit();
+            }
+        }
+
+    };
+
+    private void showTimePicker() {
+        TimePickerFragment time = new TimePickerFragment();
+        Calendar calendar = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("hour", calendar.get(Calendar.HOUR));
+        args.putInt("minute", calendar.get(Calendar.MINUTE));
+        time.setArguments(args);
+        time.setCallBack(ontime);
+        time.show(getFragmentManager(), "Time Picker");
+    }
+
+    TimePickerDialog.OnTimeSetListener ontime = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            etDepartureTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+        }
+    };
+
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        /**
+         * Set Up Current Date Into dialog
+         */
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        /**
+         * Set Call back to capture selected date
+         */
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
+    }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            etDepartureDate.setText(String.valueOf(monthOfYear+1) + "-" + String.valueOf(dayOfMonth)
+                    + "-" + String.valueOf(year));
+        }
+    };
+
+    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
+        Fragment nextFrag;
+        @Override
+        public void onClick(View v) {
+            if(v == nextButton) {
+                nextFrag = new AddTripFragment2b();
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
 

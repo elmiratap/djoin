@@ -26,7 +26,7 @@ import java.util.Calendar;
  * Use the {@link AddTripFragment2a#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTimeSetListener {
+public class AddTripFragment2a extends Fragment  {
 
     private TextView tvAddFrag2;
 
@@ -89,6 +89,7 @@ public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTi
 //        etDepartureDate.setOnClickListener(this);
 //        etDepartureTime.setOnClickListener(this);
         etDepartureDate = (EditText) view.findViewById(R.id.etDepartureDate);
+        etDepartureTime = (EditText) view.findViewById(R.id.etDepartureTime);
         etDepartureDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,11 +97,37 @@ public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTi
                 showDatePicker();
             }
         });
+        etDepartureTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePicker();
+            }
+        });
         this.cal = Calendar.getInstance();
 
         //return view;
         return view;
     }
+
+    private void showTimePicker() {
+        TimePickerFragment time = new TimePickerFragment();
+        Calendar calendar = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("hour", calendar.get(Calendar.HOUR));
+        args.putInt("minute", calendar.get(Calendar.MINUTE));
+        time.setArguments(args);
+        time.setCallBack(ontime);
+        time.show(getFragmentManager(), "Time Picker");
+    }
+
+    TimePickerDialog.OnTimeSetListener ontime = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+           etDepartureTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+        }
+    };
+
     private void showDatePicker() {
         DatePickerFragment date = new DatePickerFragment();
         /**
@@ -118,6 +145,7 @@ public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTi
         date.setCallBack(ondate);
         date.show(getFragmentManager(), "Date Picker");
     }
+
     DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
 
         public void onDateSet(DatePicker view, int year, int monthOfYear,
@@ -130,21 +158,17 @@ public class AddTripFragment2a extends Fragment implements TimePickerDialog.OnTi
 
 
 
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-    }
-
-    DatePickerDialog.OnDateSetListener datePickerListener=new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker arg0, int year, int month, int day) {
-
-            cal.set(Calendar.YEAR,year);
-            cal.set(Calendar.MONTH,month);
-            cal.set(Calendar.DAY_OF_MONTH,day);
-        }
-    };
+//
+//    DatePickerDialog.OnDateSetListener datePickerListener=new DatePickerDialog.OnDateSetListener() {
+//
+//        @Override
+//        public void onDateSet(DatePicker arg0, int year, int month, int day) {
+//
+//            cal.set(Calendar.YEAR,year);
+//            cal.set(Calendar.MONTH,month);
+//            cal.set(Calendar.DAY_OF_MONTH,day);
+//        }
+//    };
 
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
