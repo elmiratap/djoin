@@ -30,7 +30,7 @@
         android:text="Round Trip"
         />
     <CheckBox
-        android:id="@+id/rtCheckBox"
+        android:id="@+id/cbRoundTrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:labelFor="@id/checkBoxText"

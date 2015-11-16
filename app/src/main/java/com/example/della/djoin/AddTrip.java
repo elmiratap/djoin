@@ -16,9 +16,12 @@ public class AddTrip extends Activity {
     public Fragment addTripFrag2a;
     public Fragment addTripFrag3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // initializes all views from the activity_add_trip xml file
         setContentView(R.layout.activity_add_trip);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
 

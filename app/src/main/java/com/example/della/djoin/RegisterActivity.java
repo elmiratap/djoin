@@ -86,7 +86,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             etUsername.setText(null); // TODO transition, redirect
             etPassword.setText(null);
             tvRegisterError.setVisibility(View.GONE);
-            dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
             Log.d("results", dbHelper.getTableAsString(db, dbHelper.TABLE_USER));
 //            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
 //                    "username = ?", new String[]{"della"}, null, null, null);

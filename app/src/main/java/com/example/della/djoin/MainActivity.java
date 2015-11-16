@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private EditText etUsername;
+    public static String loggedInUser;
     private EditText etPassword;
     private TextView tvTitle;
     private Button btnLogin;
@@ -98,9 +99,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         // query to check if the entered username and password combo are in the table
+        loggedInUser = etUsername.getText().toString();
         Cursor mCursor = db.rawQuery("SELECT USERNAME, PASSWORD FROM " +
                                     dbHelper.TABLE_USER + " WHERE USERNAME=? AND password=?",
-                                    new String[]{etUsername.getText().toString(), etPassword.getText().toString()});
+                                    new String[]{loggedInUser, etPassword.getText().toString()});
 
         // checks to see if cursor is able to find a record that matches the query
         if (mCursor.moveToFirst())

@@ -60,9 +60,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TRIP = "CREATE TABLE "
             + TABLE_TRIP
-            + "(" + TRIP_ID + " TEXT PRIMARY KEY,"
+            + "(" + TRIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + CREATED_BY + " TEXT,"
-            + START_LOCATION + " TEXT,"
+            + START_LOCATION + " TEXT," // TODO make this not null - other values potentially, too
             + DESTINATION + " TEXT,"
             + ROUND_TRIP + " BIT,"
             + DEPARTURE_DATE + " DATE,"
@@ -116,11 +116,15 @@ public class DBHelper extends SQLiteOpenHelper {
             Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
             if (allRows.moveToFirst() ){
                 count++;
+                Log.d("count", String.valueOf(count));
                 String[] columnNames = allRows.getColumnNames();
                 do {
                     for (String name: columnNames) {
+
                         tableString += String.format("%s: %s\n", name,
                                 allRows.getString(allRows.getColumnIndex(name)));
+                        Log.d(name, tableString);
+
                     }
                     tableString += "\n";
 
