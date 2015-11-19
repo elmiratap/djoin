@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String USER_CAR_COLOR = "user_carColor";
 
     // Trip table column names
-    public static final String TRIP_ID = "trip_id";
+    public static final String TRIP_ID = "_id";
     public static final String CREATED_BY = "created_by"; // username
     public static final String START_LOCATION = "start_loc";
     public static final String DESTINATION = "desination";
@@ -58,9 +58,11 @@ public class DBHelper extends SQLiteOpenHelper {
             + USER_CAR_COLOR + " TEXT"
             + ")";
 
+    // TODO try manually creating ID - select max key from whole table
+    // Save state every time
     private static final String CREATE_TABLE_TRIP = "CREATE TABLE "
             + TABLE_TRIP
-            + "(" + TRIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + "(" + TRIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
             + CREATED_BY + " TEXT,"
             + START_LOCATION + " TEXT," // TODO make this not null - other values potentially, too
             + DESTINATION + " TEXT,"

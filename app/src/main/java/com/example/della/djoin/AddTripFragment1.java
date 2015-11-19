@@ -77,6 +77,7 @@ public class AddTripFragment1 extends Fragment {
 
             // Click next button
             if(v == nextButton) {
+                db.beginTransaction();
                 nextFrag = new AddTripFragment2a();
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
@@ -91,11 +92,18 @@ public class AddTripFragment1 extends Fragment {
                 cv.put(dbHelper.ROUND_TRIP, cbRoundTrip.isChecked());
                 cv.put(dbHelper.CREATED_BY, createdBy);
 //
-               // db.insert(dbHelper.TABLE_TRIP, null, cv);
+                db.insert(dbHelper.TABLE_TRIP, null, cv);
                 //Log.d("trip results", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
 ////            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
 ////                    "username = ?", new String[]{"della"}, null, null, null);
 ////            queryres.moveToFirst();
+//                final String MY_QUERY = "SELECT MAX(trip_id) FROM " + dbHelper.TABLE_TRIP;
+//                Cursor cur = db.rawQuery(MY_QUERY, null);
+//                Log.d("heeerree", String.valueOf(cur));
+//                cur.moveToFirst();
+//                int ID = cur.getInt(0);
+
+
             try {
 
                 // makes sure that primary key constraint isn't violated
