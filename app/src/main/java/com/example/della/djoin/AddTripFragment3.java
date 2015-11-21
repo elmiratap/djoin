@@ -1,12 +1,19 @@
 package com.example.della.djoin;
 
 import android.app.Fragment;
-import android.net.Uri;
+import android.app.FragmentTransaction;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 
 /**
@@ -21,94 +28,104 @@ public class AddTripFragment3 extends Fragment {
 
     // TODO done button
 
-    private TextView tvAddFrag3;
-
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
+    View view;
+    private EditText etAvailableSeats;
+    private EditText etCarModel;
+    private EditText etCarMake;
+    private EditText etCarColor;
+    private CheckBox cbSavedCar;
+    private Button doneButton;
+    private EditText etDetails;
+    private DBHelper dbHelper;
+    private SQLiteDatabase db;
 //
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    private OnFragmentInteractionListener mListener;
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment AddTripFragment3.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static AddTripFragment3 newInstance(String param1, String param2) {
-//        AddTripFragment3 fragment = new AddTripFragment3();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     public AddTripFragment3() {
         // Required empty public constructor
     }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_trip_fragment3, container, false);
+        view = inflater.inflate(R.layout.fragment_add_trip_fragment3, container, false);
+        etAvailableSeats = (EditText) view.findViewById(R.id.etAvailableSeats);
+        etCarMake = (EditText) view.findViewById(R.id.etCarMake);
+        etCarModel = (EditText) view.findViewById(R.id.etCarModel);
+        etCarColor = (EditText) view.findViewById(R.id.etCarColor);
+        cbSavedCar = (CheckBox) view.findViewById(R.id.cbSavedCar);
+        etDetails = (EditText) view.findViewById(R.id.etDetails);
+        doneButton = (Button) view.findViewById(R.id.doneButton);
+        doneButton.setOnClickListener(buttonFragmentOnClickListener);
+        dbHelper = new DBHelper(getActivity());
+        return view;
     }
 
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        db = dbHelper.getWritableDatabase();
+    }
 
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        db.close();
+    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        public void onFragmentInteraction(Uri uri);
-//    }
+    Button.OnClickListener buttonFragmentOnClickListener = new Button.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            if(v == doneButton) {
+
+                // Create new transaction
+                //FragmentTransaction trans = getFragmentManager().beginTransaction();
+                Intent intent = new Intent(getActivity(), MyTrips.class);
+
+                ContentValues cv = new ContentValues(4);
+                cv.put(dbHelper.NUM_PASSENGERS, etAvailableSeats.getText().toString());
+                cv.put(dbHelper.CAR_MAKE, etCarMake.getText().toString());
+                cv.put(dbHelper.CAR_MODEL, etCarModel.getText().toString());
+                cv.put(dbHelper.CAR_COLOR, etCarColor.getText().toString());
+                //TODO: implement autofill for car info
+                cv.put(dbHelper.DESCRIPTION, etDetails.getText().toString());
+
+
+                try {
+
+                    db.beginTransaction();
+                    // Log.d("content values", String.valueOf(cv));
+                    db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
+//                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
+
+//                tvLocationError.setVisibility(View.GONE);
+//                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
+                    // Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+                    db.setTransactionSuccessful();
+                    Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+
+
+                } catch (SQLiteConstraintException e) {
+                    Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+//                // tells user the username they entered is already taken
+                    //Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+//                tvLocationError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
+//                return;
+                } finally {
+                    db.endTransaction();
+                }
+
+                startActivity(intent);
+                // Replace whatever is in the fragment container view with this fragment
+                // and add the transaction to the back stack.
+//                trans.replace(R.id.addTrip, nextFrag);
+//                trans.addToBackStack(null);
+//                trans.commit();
+            }
+        }
+
+    };
+
+
 
 }

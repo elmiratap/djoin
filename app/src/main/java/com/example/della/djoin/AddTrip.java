@@ -13,8 +13,6 @@ public class AddTrip extends Activity {
     private TextView tvTitle;
     // Declare the add trip screen fragments
     public Fragment addTripFrag1;
-    public Fragment addTripFrag2a;
-    public Fragment addTripFrag3;
 
 
     @Override

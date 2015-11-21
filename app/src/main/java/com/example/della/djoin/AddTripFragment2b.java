@@ -45,34 +45,6 @@ public class AddTripFragment2b extends Fragment {
     private SQLiteDatabase db;
     boolean isChecked;
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//
-//    // TODO: Rename and change types of parameters
-//    private String mParam1;
-//    private String mParam2;
-//
-//    private OnFragmentInteractionListener mListener;
-//
-//    /**
-//     * Use this factory method to create a new instance of
-//     * this fragment using the provided parameters.
-//     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-//     * @return A new instance of fragment AddTripFragment2b.
-//     */
-//    // TODO: Rename and change types and number of parameters
-//    public static AddTripFragment2b newInstance(String param1, String param2) {
-//        AddTripFragment2b fragment = new AddTripFragment2b();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     public AddTripFragment2b() {
         // Required empty public constructor
@@ -98,27 +70,27 @@ public class AddTripFragment2b extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                showDatePicker();
+                showDatePicker(etReturnDate);
             }
         });
         etDepartureDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                showDatePicker();
+                showDatePicker(etDepartureDate);
             }
         });
         etDepartureTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimePicker();
+                showTimePicker(etDepartureTime);
             }
         });
         etReturnTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                showTimePicker();
+                showTimePicker(etReturnTime);
             }
         });
         this.cal = Calendar.getInstance();
@@ -167,7 +139,6 @@ public class AddTripFragment2b extends Fragment {
 //                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
                     // Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
                     db.setTransactionSuccessful();
-                    nextFrag = new AddTripFragment3();
                     Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
 
 
@@ -192,18 +163,37 @@ public class AddTripFragment2b extends Fragment {
 
     };
 
-    private void showTimePicker() {
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        db = dbHelper.getWritableDatabase();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        db.close();
+    }
+
+    private void showTimePicker(EditText et) {
         TimePickerFragment time = new TimePickerFragment();
         Calendar calendar = Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("hour", calendar.get(Calendar.HOUR));
         args.putInt("minute", calendar.get(Calendar.MINUTE));
         time.setArguments(args);
-        time.setCallBack(ontime);
-        time.show(getFragmentManager(), "Time Picker");
+
+        if (et == etDepartureTime) {
+            time.setCallBack(onTime1);
+            time.show(getFragmentManager(), "Time Picker");
+        } else {
+            time.setCallBack(onTime2);
+            time.show(getFragmentManager(), "Time Picker");
+        }
     }
 
-    TimePickerDialog.OnTimeSetListener ontime = new TimePickerDialog.OnTimeSetListener() {
+    TimePickerDialog.OnTimeSetListener onTime1 = new TimePickerDialog.OnTimeSetListener() {
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -211,25 +201,48 @@ public class AddTripFragment2b extends Fragment {
         }
     };
 
-    private void showDatePicker() {
-        DatePickerFragment date = new DatePickerFragment();
+    TimePickerDialog.OnTimeSetListener onTime2 = new TimePickerDialog.OnTimeSetListener() {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            etReturnTime.setText(String.valueOf(hourOfDay) + ":" + String.valueOf(minute));
+        }
+    };
+
+    private void showDatePicker(EditText et) {
+        DatePickerFragment dateFrag = new DatePickerFragment();
         /**
          * Set Up Current Date Into dialog
          */
+
         Calendar calender = Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("year", calender.get(Calendar.YEAR));
         args.putInt("month", calender.get(Calendar.MONTH));
         args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
-        date.setArguments(args);
+        dateFrag.setArguments(args);
         /**
          * Set Call back to capture selected date
          */
-        date.setCallBack(ondate);
-        date.show(getFragmentManager(), "Date Picker");
+
+        if (et == etDepartureDate) {
+            dateFrag.setCallBack(onDate1);
+            dateFrag.show(getFragmentManager(), "Date Picker");
+        } else {
+            dateFrag.setCallBack(onDate2);
+            dateFrag.show(getFragmentManager(), "Date Picker");
+        }
     }
 
-    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener onDate2 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            etReturnDate.setText(String.valueOf(monthOfYear+1) + "-" + String.valueOf(dayOfMonth)
+                    + "-" + String.valueOf(year));
+        }
+    };
+
+    DatePickerDialog.OnDateSetListener onDate1 = new DatePickerDialog.OnDateSetListener() {
 
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
@@ -239,62 +252,23 @@ public class AddTripFragment2b extends Fragment {
         }
     };
 
-    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
-        Fragment nextFrag;
-        @Override
-        public void onClick(View v) {
-            if(v == nextButton) {
-                nextFrag = new AddTripFragment2b();
-                // Create new transaction
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment container view with this fragment
-                // and add the transaction to the back stack.
-                trans.replace(R.id.addTrip, nextFrag);
-                trans.addToBackStack(null);
-                trans.commit();
-            }
-        }
-
-    };
-
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
+//    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
+//        Fragment nextFrag;
+//        @Override
+//        public void onClick(View v) {
+//            if(v == nextButton) {
+//                nextFrag = new AddTripFragment2b();
+//                // Create new transaction
+//                FragmentTransaction trans = getFragmentManager().beginTransaction();
+//
+//                // Replace whatever is in the fragment container view with this fragment
+//                // and add the transaction to the back stack.
+//                trans.replace(R.id.addTrip, nextFrag);
+//                trans.addToBackStack(null);
+//                trans.commit();
+//            }
 //        }
-//    }
 //
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-//
-//    /**
-//     * This interface must be implemented by activities that contain this
-//     * fragment to allow an interaction in this fragment to be communicated
-//     * to the activity and potentially other fragments contained in that
-//     * activity.
-//     * <p/>
-//     * See the Android Training lesson <a href=
-//     * "http://developer.android.com/training/basics/fragments/communicating.html"
-//     * >Communicating with Other Fragments</a> for more information.
-//     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        public void onFragmentInteraction(Uri uri);
-//    }
+//    };
 
 }

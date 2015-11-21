@@ -9,36 +9,36 @@
     tools:context="com.example.della.djoin.AddTripFragment3">
 
     <EditText
-        android:id="@+id/availableSeats"
+        android:id="@+id/etAvailableSeats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Available seats"
         />
     <EditText
-        android:id="@+id/carMake"
+        android:id="@+id/etCarMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Car make"
         />
     <EditText
-        android:id="@+id/carModel"
+        android:id="@+id/etCarModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Car model"
         />
     <EditText
-        android:id="@+id/carColor"
+        android:id="@+id/etCarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Car color"
         />
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbSavedCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Use saved car"/>
     <EditText
-        android:id="@+id/etReturnTime"
+        android:id="@+id/etDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Additional information (140 characters)"
