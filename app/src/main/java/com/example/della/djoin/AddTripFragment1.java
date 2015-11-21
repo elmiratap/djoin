@@ -53,6 +53,7 @@ public class AddTripFragment1 extends Fragment {
         createdBy = MainActivity.loggedInUser;
         dbHelper = new DBHelper(getActivity());
 
+
         return view;
     }
 
@@ -77,8 +78,8 @@ public class AddTripFragment1 extends Fragment {
 
             // Click next button
             if(v == nextButton) {
-                db.beginTransaction();
-                nextFrag = new AddTripFragment2a();
+
+
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
 
@@ -91,8 +92,13 @@ public class AddTripFragment1 extends Fragment {
                 cv.put(dbHelper.DESTINATION, etDestination.getText().toString());
                 cv.put(dbHelper.ROUND_TRIP, cbRoundTrip.isChecked());
                 cv.put(dbHelper.CREATED_BY, createdBy);
-//
-                db.insert(dbHelper.TABLE_TRIP, null, cv);
+
+                if (cbRoundTrip.isChecked()) {
+                    nextFrag = new AddTripFragment2b();
+                }
+                else {
+                    nextFrag = new AddTripFragment2a();
+                }
                 //Log.d("trip results", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
 ////            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
 ////                    "username = ?", new String[]{"della"}, null, null, null);
@@ -105,24 +111,18 @@ public class AddTripFragment1 extends Fragment {
 
 
             try {
+                db.beginTransaction();
 
                 // makes sure that primary key constraint isn't violated
 
-                Log.d("content values", String.valueOf(cv));
+                // Log.d("content values", String.valueOf(cv));
                  db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
 //                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-//
-                etStartLocation.setText(null); // TODO transition, redirect
-                etDestination.setText(null);
 
 //                tvLocationError.setVisibility(View.GONE);
-//                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
-                Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+////                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
+//                Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
                 db.setTransactionSuccessful();
-////            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-////                    "username = ?", new String[]{"della"}, null, null, null);
-////            queryres.moveToFirst();
-//                // if primary key constraint is violated
             } catch (SQLiteConstraintException e) {
 //                // tells user the username they entered is already taken
                 Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));

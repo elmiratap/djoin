@@ -30,7 +30,7 @@
         android:focusable="false"
         />
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbSameAsDepart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Same as departure date"/>

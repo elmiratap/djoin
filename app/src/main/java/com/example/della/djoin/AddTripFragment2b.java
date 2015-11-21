@@ -1,17 +1,20 @@
 package com.example.della.djoin;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.FragmentManager;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
-import android.net.Uri;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteConstraintException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -37,6 +40,10 @@ public class AddTripFragment2b extends Fragment {
     private EditText etReturnDate;
     private EditText etReturnTime;
     private Calendar cal;
+    private CheckBox cbSameAsDepart;
+    private DBHelper dbHelper;
+    private SQLiteDatabase db;
+    boolean isChecked;
 
 //    // TODO: Rename parameter arguments, choose names that match
 //    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -83,6 +90,10 @@ public class AddTripFragment2b extends Fragment {
         etDepartureTime = (EditText) view.findViewById(R.id.etDepartureTime);
         etReturnTime = (EditText) view.findViewById(R.id.etReturnTime);
         etReturnDate = (EditText) view.findViewById(R.id.etReturnDate);
+        cbSameAsDepart = (CheckBox) view.findViewById(R.id.cbSameAsDepart);
+        cbSameAsDepart.setOnCheckedChangeListener(myCheckedListener);
+        dbHelper = new DBHelper(getActivity());
+
         etReturnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,14 +125,62 @@ public class AddTripFragment2b extends Fragment {
 
         return view;
     }
+
+    CheckBox.OnCheckedChangeListener myCheckedListener = new CheckBox.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if(isChecked) {
+                Log.d("check box", "is checked");
+                etReturnDate.setText(etDepartureDate.getText().toString());
+                }
+        }
+    };
+
+
     Button.OnClickListener buttonFragmentOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
+
+
         @Override
         public void onClick(View v) {
             if(v == nextButton) {
-                nextFrag = new AddTripFragment3();
+
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+                ContentValues cv = new ContentValues(4);
+                cv.put(dbHelper.DEPARTURE_DATE, etDepartureDate.getText().toString());
+                cv.put(dbHelper.DEPARTURE_TIME, etDepartureTime.getText().toString());
+                cv.put(dbHelper.RETURN_DATE, etReturnDate.getText().toString());
+                cv.put(dbHelper.RETURN_TIME, etReturnTime.getText().toString());
+
+                nextFrag = new AddTripFragment3();
+
+                try {
+
+                    db.beginTransaction();
+                    // Log.d("content values", String.valueOf(cv));
+                    db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
+//                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
+
+//                tvLocationError.setVisibility(View.GONE);
+//                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
+                    // Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+                    db.setTransactionSuccessful();
+                    nextFrag = new AddTripFragment3();
+                    Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+
+
+                } catch (SQLiteConstraintException e) {
+                    Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+//                // tells user the username they entered is already taken
+                    //Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
+//                tvLocationError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
+//                return;
+                } finally {
+                    db.endTransaction();
+                }
+
 
                 // Replace whatever is in the fragment container view with this fragment
                 // and add the transaction to the back stack.

@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     // Table create statements
-    private static final String CREATE_TABLE_USER = "CREATE TABLE "
+    private static final String CREATE_TABLE_USER = "CREATE TABLE IF NOT EXISTS "
             + TABLE_USER
             + "(" + USERNAME + " TEXT PRIMARY KEY,"
             + PASSWORD + " TEXT,"
@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // TODO try manually creating ID - select max key from whole table
     // Save state every time
-    private static final String CREATE_TABLE_TRIP = "CREATE TABLE "
+    private static final String CREATE_TABLE_TRIP = "CREATE TABLE IF NOT EXISTS "
             + TABLE_TRIP
             + "(" + TRIP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
             + CREATED_BY + " TEXT,"
@@ -86,6 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
     }
+
+    @Override
     public void onCreate(SQLiteDatabase db) {
         // Create required tables
         db.execSQL(CREATE_TABLE_USER);
@@ -101,40 +103,35 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
         String TAG = "DBHelper";
-        /**
-         * Helper function that parses a given table into a string
-         * and returns it for easy printing. The string consists of
-         * the table name and then each row is iterated through with
-         * column_name: value pairs printed out.
-         *
-         * @param db the database to get the table from
-         * @param tableName the the name of the table to parse
-         * @return the table tableName as a string
-         */
-        public String getTableAsString(SQLiteDatabase db, String tableName) {
-            int count = 0;
-            Log.d(TAG, "getTableAsString called");
-            String tableString = String.format("Table %s:\n", tableName);
-            Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
-            if (allRows.moveToFirst() ){
-                count++;
-                Log.d("count", String.valueOf(count));
-                String[] columnNames = allRows.getColumnNames();
-                do {
-                    for (String name: columnNames) {
+    /**
+     * Helper function that parses a given table into a string
+     * and returns it for easy printing. The string consists of
+     * the table name and then each row is iterated through with
+     * column_name: value pairs printed out.
+     *
+     * @param db        the database to get the table from
+     * @param tableName the the name of the table to parse
+     * @return the table tableName as a string
+     */
+    public String getTableAsString(SQLiteDatabase db, String tableName) {
+//        int count = 0;
+        Log.d(TAG, "getTableAsString called");
+        String tableString = String.format("Table %s:\n", tableName);
+        Cursor allRows = db.rawQuery("SELECT * FROM " + tableName, null);
+        while (allRows.moveToNext()) {
+//            count++;
+//            Log.d("count", String.valueOf(count));
+            String[] columnNames = allRows.getColumnNames();
+            for (String name : columnNames) {
 
-                        tableString += String.format("%s: %s\n", name,
-                                allRows.getString(allRows.getColumnIndex(name)));
-                        Log.d(name, tableString);
-
-                    }
-                    tableString += "\n";
-
-                } while (allRows.moveToNext());
+                tableString += String.format("%s: %s\n", name,
+                        allRows.getString(allRows.getColumnIndex(name)));
             }
 
-            return tableString;
         }
+
+        return tableString;
+    }
 
 
 

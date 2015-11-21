@@ -8,9 +8,9 @@
     android:id="@+id/aTFrag1"
     tools:context="com.example.della.djoin.AddTripFragment1">
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/aTFrag1">
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/aTFrag1">-->
 
     <EditText
         android:id="@+id/etStartLocation"
