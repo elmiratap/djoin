@@ -5,11 +5,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 public class MyTrips extends AppCompatActivity {
 
-    private TextView placeholderText;
     Toolbar toolbar;
     TripsPagerAdapter adapter;
     ViewPager pager;
@@ -34,13 +32,12 @@ public class MyTrips extends AppCompatActivity {
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
-                return ContextCompat.getColor(context, R.color.tabsScrollColor);
+                return ContextCompat.getColor(getApplicationContext(), R.color.tabsScrollColor);
             }
         });
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
-        placeholderText = (TextView) findViewById(R.id.placeholder);
 //
 //        myTripsPagerAdapter =
 //                new TripsPagerAdapter(
