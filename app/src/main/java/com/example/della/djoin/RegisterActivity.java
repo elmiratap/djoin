@@ -1,18 +1,20 @@
 package com.example.della.djoin;
 
 import android.app.Activity;
-import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
 
@@ -30,6 +32,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private Button btnRegister;
 
     private String[] userColumns;
+    public static ParseUser user;
 
 
     DBHelper dbHelper;
@@ -74,29 +77,27 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v)  {
-        ContentValues cv = new ContentValues(2);
-        cv.put(dbHelper.USERNAME, etUsername.getText().toString());
-        cv.put(dbHelper.PASSWORD, etPassword.getText().toString());
+        if(v == btnRegister) {
+            // Check if username and password are in the database
+            user = new ParseUser();
+            user.setUsername(etUsername.getText().toString());
+            user.setPassword(etPassword.getText().toString());
 
-        try {
-            // makes sure that primary key constraint isn't violated
-            db.insertOrThrow(dbHelper.TABLE_USER, null, cv);
-            //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-
-            etUsername.setText(null); // TODO transition, redirect
-            etPassword.setText(null);
-            tvRegisterError.setVisibility(View.GONE);
-            Log.d("results", dbHelper.getTableAsString(db, dbHelper.TABLE_USER));
-//            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-//                    "username = ?", new String[]{"della"}, null, null, null);
-//            queryres.moveToFirst();
-        // if primary key constraint is violated
-        } catch (SQLiteConstraintException e) {
-            // tells user the username they entered is already taken
-            Log.d("results", dbHelper.getTableAsString(db, dbHelper.TABLE_USER));
-                   tvRegisterError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
-            return;
+            user.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        // The username and password combination is both unique.
+                        Intent intent = new Intent(RegisterActivity.this, MyTrips.class);
+                        startActivity(intent);
+                    } else {
+                        // Username and password combination is not unique.
+                        tvRegisterError.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
         }
+
     }
 
     @Override

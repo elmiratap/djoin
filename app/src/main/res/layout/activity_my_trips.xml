@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MyTrips">
+    tools:context="com.example.della.djoin.MyTrips">
 
     <include
         android:id="@+id/tool_bar"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         />
 
-    <com.android4devs.slidingtab.SlidingTabLayout
+    <com.example.della.djoin.SlidingTabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

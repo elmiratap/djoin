@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,7 @@ public class AddTripFragment3 extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_add_trip_fragment3, container, false);
         etAvailableSeats = (EditText) view.findViewById(R.id.etAvailableSeats);
+        etAvailableSeats.setRawInputType(InputType.TYPE_CLASS_NUMBER);
         etCarMake = (EditText) view.findViewById(R.id.etCarMake);
         etCarModel = (EditText) view.findViewById(R.id.etCarModel);
         etCarColor = (EditText) view.findViewById(R.id.etCarColor);
@@ -77,50 +79,19 @@ public class AddTripFragment3 extends Fragment {
         @Override
         public void onClick(View v) {
             if(v == doneButton) {
-
-                // Create new transaction
-                //FragmentTransaction trans = getFragmentManager().beginTransaction();
+                // Add all information to the database and switch to the MyTrips screen.
                 Intent intent = new Intent(getActivity(), MyTrips.class);
+                AddTripFragment1.trips.put("availableSeats", Integer.parseInt(etAvailableSeats.getText().toString()));
+                AddTripFragment1.trips.put("carMake", etCarMake.getText().toString());
+                AddTripFragment1.trips.put("carModel", etCarModel.getText().toString());
+                AddTripFragment1.trips.put("carColor", etCarColor.getText().toString());
+                AddTripFragment1.trips.put("details", etDetails.getText().toString());
 
-                ContentValues cv = new ContentValues(4);
-                cv.put(dbHelper.NUM_PASSENGERS, etAvailableSeats.getText().toString());
-                cv.put(dbHelper.CAR_MAKE, etCarMake.getText().toString());
-                cv.put(dbHelper.CAR_MODEL, etCarModel.getText().toString());
-                cv.put(dbHelper.CAR_COLOR, etCarColor.getText().toString());
-                //TODO: implement autofill for car info
-                cv.put(dbHelper.DESCRIPTION, etDetails.getText().toString());
-
-
-                try {
-
-                    db.beginTransaction();
-                    // Log.d("content values", String.valueOf(cv));
-                    db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
-//                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-
-//                tvLocationError.setVisibility(View.GONE);
-//                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
-                    // Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-                    db.setTransactionSuccessful();
-                    Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-
-
-                } catch (SQLiteConstraintException e) {
-                    Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-//                // tells user the username they entered is already taken
-                    //Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-//                tvLocationError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
-//                return;
-                } finally {
-                    db.endTransaction();
-                }
+                // Persist information from all steps to the database.
+                // Do not persist if the user has not gone through all the steps.
+                AddTripFragment1.trips.saveInBackground();
 
                 startActivity(intent);
-                // Replace whatever is in the fragment container view with this fragment
-                // and add the transaction to the back stack.
-//                trans.replace(R.id.addTrip, nextFrag);
-//                trans.addToBackStack(null);
-//                trans.commit();
             }
         }
 

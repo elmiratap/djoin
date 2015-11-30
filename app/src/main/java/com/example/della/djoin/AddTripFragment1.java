@@ -2,12 +2,9 @@ package com.example.della.djoin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +12,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.ParseObject;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,6 +35,7 @@ public class AddTripFragment1 extends Fragment {
 
     // Error message
     private TextView tvLocationError;
+    public static ParseObject trips;
 
     public AddTripFragment1() {
     }
@@ -78,59 +78,24 @@ public class AddTripFragment1 extends Fragment {
 
             // Click next button
             if(v == nextButton) {
-
-
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-                // Put first Add Trip page's content (start location and destination) into the database
-                ContentValues cv = new ContentValues(4);
-//            Log.d("etstartlocation ", etStartLocation.getText().toString());
-//            Log.d("etdest ", etDestination.getText().toString());
-//            Log.d("ischecked ", String.valueOf(cbRoundTrip.isChecked()));
-                cv.put(dbHelper.START_LOCATION, etStartLocation.getText().toString());
-                cv.put(dbHelper.DESTINATION, etDestination.getText().toString());
-                cv.put(dbHelper.ROUND_TRIP, cbRoundTrip.isChecked());
-                cv.put(dbHelper.CREATED_BY, createdBy);
+                // Add the first page's trip information to the database.
+                trips = new ParseObject("Trips");
+                trips.put("createdBy", createdBy);
+                trips.put("startLocation", etStartLocation.getText().toString());
+                trips.put("destination", etDestination.getText().toString());
+                trips.put("roundTripBool", cbRoundTrip.isChecked());
 
+
+                // Further required user input depends on whether or not the trip is tround trip.
                 if (cbRoundTrip.isChecked()) {
                     nextFrag = new AddTripFragment2b();
                 }
                 else {
                     nextFrag = new AddTripFragment2a();
                 }
-                //Log.d("trip results", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-////            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-////                    "username = ?", new String[]{"della"}, null, null, null);
-////            queryres.moveToFirst();
-//                final String MY_QUERY = "SELECT MAX(trip_id) FROM " + dbHelper.TABLE_TRIP;
-//                Cursor cur = db.rawQuery(MY_QUERY, null);
-//                Log.d("heeerree", String.valueOf(cur));
-//                cur.moveToFirst();
-//                int ID = cur.getInt(0);
-
-
-            try {
-                db.beginTransaction();
-
-                // makes sure that primary key constraint isn't violated
-
-                // Log.d("content values", String.valueOf(cv));
-                 db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
-//                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-
-//                tvLocationError.setVisibility(View.GONE);
-////                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
-//                Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-                db.setTransactionSuccessful();
-            } catch (SQLiteConstraintException e) {
-//                // tells user the username they entered is already taken
-                Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-//                tvLocationError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
-//                return;
-            } finally {
-                db.endTransaction();
-            }
 
                 // Replace whatever is in the fragment container view with this fragment
                 // and add the transaction to the back stack.

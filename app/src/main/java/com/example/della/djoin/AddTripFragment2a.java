@@ -41,9 +41,6 @@ public class AddTripFragment2a extends Fragment  {
     private EditText etDepartureDate;
     private EditText etDepartureTime;
     private Calendar cal;
-    private DBHelper dbHelper;
-    private SQLiteDatabase db;
-    private Cursor cursor;
 
     public AddTripFragment2a() {
     }
@@ -60,7 +57,6 @@ public class AddTripFragment2a extends Fragment  {
                 return true;
             }
         });
-        dbHelper = new DBHelper(getActivity());
 
 
         nextButton = (Button) view.findViewById(R.id.nextButton);
@@ -132,30 +128,6 @@ public class AddTripFragment2a extends Fragment  {
         }
     };
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        db = dbHelper.getWritableDatabase();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        db.close();
-    }
-
-
-//
-//    DatePickerDialog.OnDateSetListener datePickerListener=new DatePickerDialog.OnDateSetListener() {
-//
-//        @Override
-//        public void onDateSet(DatePicker arg0, int year, int month, int day) {
-//
-//            cal.set(Calendar.YEAR,year);
-//            cal.set(Calendar.MONTH,month);
-//            cal.set(Calendar.DAY_OF_MONTH,day);
-//        }
-//    };
 
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
@@ -165,34 +137,12 @@ public class AddTripFragment2a extends Fragment  {
 
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
+                AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
+                AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
 
-                ContentValues cv = new ContentValues(2);
-                cv.put(dbHelper.DEPARTURE_DATE, etDepartureDate.getText().toString());
-                cv.put(dbHelper.DEPARTURE_TIME, etDepartureTime.getText().toString());
+                // Proceed to the next step.
+                nextFrag = new AddTripFragment3();
 
-                try {
-
-                    db.beginTransaction();
-                    // Log.d("content values", String.valueOf(cv));
-                    db.insertOrThrow(dbHelper.TABLE_TRIP, null, cv);
-//                //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-
-//                tvLocationError.setVisibility(View.GONE);
-//                dbHelper.getTableAsString(db, dbHelper.TABLE_USER);
-                   // Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-                    db.setTransactionSuccessful();
-                    nextFrag = new AddTripFragment3();
-//                    Log.d("results try", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-
-                } catch (SQLiteConstraintException e) {
-//                    Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-//                // tells user the username they entered is already taken
-                    //Log.d("results catch", dbHelper.getTableAsString(db, dbHelper.TABLE_TRIP));
-//                tvLocationError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
-//                return;
-                } finally {
-                    db.endTransaction();
-                }
                 // Replace whatever is in the fragment container view with this fragment
                 // and add the transaction to the back stack.
                 trans.replace(R.id.addTrip, nextFrag);

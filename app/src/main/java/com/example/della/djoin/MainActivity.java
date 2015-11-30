@@ -2,16 +2,18 @@ package com.example.della.djoin;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 /**
  * Created by Della Anjeh and Elmira Tapkanova
@@ -28,17 +30,21 @@ public class MainActivity extends Activity implements View.OnClickListener {
     // Error message
     private TextView loginError;
     private DBHelper dbHelper;
-    private SQLiteDatabase db;
-    private Cursor cursor;
+//    private SQLiteDatabase db;
+//    private Cursor cursor;
     private String[] userColumns;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userColumns = new String[] {dbHelper.USERNAME, dbHelper.PASSWORD, dbHelper.NAME,
-                dbHelper.USER_CAR_MAKE, dbHelper.USER_CAR_MODEL, dbHelper.USER_CAR_COLOR};
         setContentView(R.layout.activity_main);
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "2Cj7clB0aDfkYtjM3D8CovDduojXw6775Iz9cxP3", "lbEX2zvla4bT91sgq7uStIuDyY4aqcG7CsGFYYAA");
+
+
 
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         etUsername = (EditText) findViewById(R.id.etUsername);
@@ -47,7 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btnLogin.setOnClickListener(this);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         loginError = (TextView) findViewById(R.id.loginError);
-        dbHelper = new DBHelper(this);
+//        dbHelper = new DBHelper(this);
         loginError.setVisibility(View.GONE);
     }
 
@@ -86,60 +92,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        db = dbHelper.getWritableDatabase();
-        cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
+//        db = dbHelper.getWritableDatabase();
+//        cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        db.close();
+//        db.close();
     }
 
     @Override
     public void onClick(View v) {
-        // query to check if the entered username and password combo are in the table
         loggedInUser = etUsername.getText().toString();
-        Cursor mCursor = db.rawQuery("SELECT USERNAME, PASSWORD FROM " +
-                                    dbHelper.TABLE_USER + " WHERE USERNAME=? AND password=?",
-                                    new String[]{loggedInUser, etPassword.getText().toString()});
+        ParseUser.logInInBackground(etUsername.getText().toString(), etPassword.getText().toString(), new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException e) {
+                if (user != null) {
+                    // Valid username and password. Redirect to My Trips.
+                    Intent intent = new Intent(MainActivity.this, MyTrips.class);
+                    startActivity(intent);
+                } else {
+                    loginError.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
-        // checks to see if cursor is able to find a record that matches the query
-        if (mCursor.moveToFirst())
-        {
-           Log.d("Valid!", "yay"); // Let them log in - go to my trips
-
-/* record exist */
-        }
-        else {
-            loginError.setVisibility(View.VISIBLE);
-            //cursor = db.query(dbHelper.TABLE_USER, userColumns, null, usernameAndPassword, null, null, null, null);
-
-            etUsername.setText(null); // TODO transition, redirect
-        }
-
-//            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-//                    "username = ?", new String[]{"della"}, null, null, null);
-//            queryres.moveToFirst();
-        // if primary key constraint is violated
-//        try {
-//            // makes sure that primary key constraint isn't violated
-//            db.insertOrThrow(dbHelper.TABLE_USER, null, cv);
-//            cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-//
-//            etUsername.setText(null); // TODO transition, redirect
-//            etPassword.setText(null);
-//            loginError.setVisibility(View.GONE);
-////            Cursor queryres = db.query(dbHelper.TABLE_USER, new String[]{dbHelper.USERNAME},
-////                    "username = ?", new String[]{"della"}, null, null, null);
-////            queryres.moveToFirst();
-//            // if primary key constraint is violated
-//        } catch (SQLiteConstraintException e) {
-//            // tells user the username they entered is already taken
-//            loginError.setVisibility(View.VISIBLE); // TODO decide if we want to conserve space
-//            return;
-//        }
     }
-
 
 }
