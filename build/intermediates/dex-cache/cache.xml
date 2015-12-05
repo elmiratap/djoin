@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\elmira\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.3.0\8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c\bolts-tasks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="C:\Users\elmira\djoin\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.3.0-72281caa37a4052a877fde69eb7bf42a386ca7db.jar" />
+    </item>
+    <item
+        jar="C:\Users\elmira\.gradle\caches\modules-2\files-2.1\com.parse\parse-android\1.11.0\6592129dec2caa8791d322c7e4b6b7a30e8eadae\parse-android-1.11.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6592129dec2caa8791d322c7e4b6b7a30e8eadae">
+        <dex dex="C:\Users\elmira\djoin\app\build\intermediates\pre-dexed\debug\parse-android-1.11.0-ea5ba14a7fe36899dbf871429ec95536d609bd24.jar" />
+    </item>
+    <item
+        jar="C:\Users\elmira\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.3.0\bc535105332645408ef5f1380215cc954b842178\bolts-applinks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="bc535105332645408ef5f1380215cc954b842178">
+        <dex dex="C:\Users\elmira\djoin\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.3.0-9c2cdb833caa5b7939d9f27f0a29e3438888efb1.jar" />
+    </item>
+
+</items>

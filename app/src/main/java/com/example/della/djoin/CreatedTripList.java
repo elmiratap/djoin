@@ -5,10 +5,10 @@ package com.example.della.djoin;
  */
 public class CreatedTripList {
     private String destination;
-    private String numSeats;
+    private int numSeats;
     private String date;
 
-    public CreatedTripList(String destination, String numSeats, String date) {
+    public CreatedTripList(String destination, int numSeats, String date) {
         super();
         this.destination = destination;
         this.numSeats = numSeats;
@@ -23,11 +23,11 @@ public class CreatedTripList {
         this.destination = destination;
     }
 
-    public String getNumSeats() {
+    public int getNumSeats() {
         return numSeats;
     }
 
-    public void setNumSeats(String numSeats) {
+    public void setNumSeats(int numSeats) {
         this.numSeats = numSeats;
     }
 
