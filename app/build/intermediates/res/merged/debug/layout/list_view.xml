@@ -33,6 +33,13 @@
         android:text="Today 6:00PM"
         android:textSize="15dp"/>
 
+    <TextView
+        android:id="@+id/tvTripId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:text="id here"/>
+
     <Button
         android:id="@+id/btnCancel"
         android:text="Cancel"
@@ -42,4 +49,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</RelativeLayout><!-- From: file:/C:/Users/elmira/djoin/app/src/main/res/layout/list_view.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Della/Documents/Database%20Systems/djoin/app/src/main/res/layout/list_view.xml -->

@@ -7,12 +7,15 @@ public class CreatedTripList {
     private String destination;
     private int numSeats;
     private String date;
+    private String id;
 
-    public CreatedTripList(String destination, int numSeats, String date) {
+    public CreatedTripList(String destination, int numSeats, String date, String id) {
         super();
         this.destination = destination;
         this.numSeats = numSeats;
         this.date = date;
+        this.id = id;
+
     }
 
     public String getDestination() {
@@ -37,5 +40,13 @@ public class CreatedTripList {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

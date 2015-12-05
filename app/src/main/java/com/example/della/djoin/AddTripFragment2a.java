@@ -4,10 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteConstraintException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -137,8 +135,17 @@ public class AddTripFragment2a extends Fragment  {
 
                 // Create new transaction
                 FragmentTransaction trans = getFragmentManager().beginTransaction();
-                AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
-                AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+
+                String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
+
+                try {
+                    AddTripFragment1.trips.put("departureDateAndTime", dateFormat.parse(dateTime));
+//                    AddTripFragment1.trips.put("departureTime", timeFormat.parse(etDepartureTime.getText().toString()));
+                } catch (ParseException e) {
+                    Log.d("date time don't persist", "bad");
+                }
 
                 // Proceed to the next step.
                 nextFrag = new AddTripFragment3();
@@ -153,44 +160,4 @@ public class AddTripFragment2a extends Fragment  {
         }
 
     };
-
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
-
-//    @Override
-//    public void onAttach(Activity activity) {
-//        super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
-//
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        mListener = null;
-//    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        public void onFragmentInteraction(Uri uri);
-//    }
-
 }
