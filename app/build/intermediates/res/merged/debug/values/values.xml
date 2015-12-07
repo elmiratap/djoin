@@ -246,6 +246,7 @@
     <!-- From: file:/C:/Users/Della/Documents/Database%20Systems/djoin/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_add_trip">AddTrip</string>
+    <string name="title_activity_join_trip">JoinTripActivity</string>
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_my_information">MyInformation</string>
     <string name="title_activity_my_trips">MyTrips</string>

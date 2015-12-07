@@ -14,6 +14,15 @@
         android:layout_centerHorizontal="true"
         android:text="You have not joined any trips yet. :("/>
 
+    <Button
+        android:id="@+id/btnFindTrip"
+        android:layout_alignBottom="@+id/lvSearchableTrips"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find Trips"/>
+
+
 
 
 </RelativeLayout>

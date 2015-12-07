@@ -102,11 +102,6 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
 
         return view;
     }
-
-    public void cancelTrip(View v) {
-
-    }
-
 }
 
 

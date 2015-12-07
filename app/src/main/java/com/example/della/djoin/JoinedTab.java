@@ -1,12 +1,14 @@
 package com.example.della.djoin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -19,6 +21,8 @@ import android.view.ViewGroup;
  */
 public class JoinedTab extends android.support.v4.app.Fragment {
 
+    private Button btnFindTrip;
+
     public JoinedTab() {
         // Required empty public constructor
     }
@@ -27,8 +31,20 @@ public class JoinedTab extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_joined_tab, container, false);
+        View view = inflater.inflate(R.layout.fragment_joined_tab, container, false);
+
+        btnFindTrip = (Button) view.findViewById(R.id.btnFindTrip);
+        btnFindTrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), JoinTripActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
+
 
 
 }

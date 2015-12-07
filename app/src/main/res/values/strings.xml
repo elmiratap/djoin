@@ -20,4 +20,5 @@
 
     <string name="action_example">Example action</string>
     <string name="title_activity_my_information">MyInformation</string>
+    <string name="title_activity_join_trip">JoinTripActivity</string>
 </resources>
