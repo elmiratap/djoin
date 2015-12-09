@@ -30,6 +30,7 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
     private List<JoinTripsList> trips;
     private Button btnJoin;
     private TextView tvTripId;
+    public static ParseObject takes;
 
     public JoinTripsListAdapter(Context c, int resourceId, List<JoinTripsList> trips) {
         super(c, resourceId, trips);
@@ -56,21 +57,31 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
         tvSeats.setText(tripList.getNumSeats() + " seats left");
+        itemView.findViewById(R.id.btnCancel).setVisibility(View.INVISIBLE);
         btnJoin = (Button) itemView.findViewById(R.id.btnJoin);
+        btnJoin.setVisibility(View.VISIBLE);
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // view saved for access from inner loops
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
-                query.whereEqualTo("objectId", tvTripId.getText().toString());
-                query.findInBackground(new FindCallback<ParseObject>() {
+                ParseQuery<ParseObject> tripIdQuery = ParseQuery.getQuery("Trips");
+                tripIdQuery.whereEqualTo("objectId", tvTripId.getText().toString());
+                tripIdQuery.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
-                        if (e == null) {
+                        if (e == null) { // TODO do extra check to make sure the trip is still valid
                             for (ParseObject object : objects) {
                                 object.put("availableSeats", tripList.getNumSeats() - 1);
                                 object.saveInBackground();
                             }
+
+                            // Add the trip to the Takes table.
+                            takes = new ParseObject("Takes");
+                            takes.put("tripId", ParseObject.createWithoutData("Trips", tvTripId.getText().toString()));
+                            takes.put("username", ParseObject.createWithoutData("User", MainActivity.loggedInUser));
+                            takes.saveInBackground();
+
                         } else {
                             Log.d("you weren't added", "you can't go");
                         }

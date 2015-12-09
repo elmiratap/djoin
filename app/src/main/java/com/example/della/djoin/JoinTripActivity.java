@@ -41,6 +41,8 @@ public class JoinTripActivity extends AppCompatActivity {
         lvSearchableTrips = (ListView) findViewById(R.id.lvSearchableTrips);
         lvSearchableTrips.setAdapter(adapter);
 
+
+        // Get the current date and time.
         Calendar c = Calendar.getInstance();
         Date now = c.getTime();
 
@@ -48,19 +50,49 @@ public class JoinTripActivity extends AppCompatActivity {
         query.whereNotEqualTo("createdBy", MainActivity.loggedInUser);
         query.whereGreaterThan("availableSeats", 0);
         query.whereGreaterThan("departureDateAndTime", now);
+
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     ParseObject result;
                     for (int i = 0; i < objects.size(); i++) {
-                        Log.d("SUCCCCCCEESSS", "SSSSSS");
+                        final List<ParseObject> objectsCopy = objects;
+                        final int iCopy = i;
                         result = objects.get(i);
-                        String destination = result.getString("destination");
-                        int numSeats = result.getInt("availableSeats");
-                        String date = String.valueOf(result.getDate("departureDateAndTime"));
-                        String id = result.getObjectId();
-                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
+
+
+                        final String destination = result.getString("destination");
+                        final int numSeats = result.getInt("availableSeats");
+                        final String date = String.valueOf(result.getDate("departureDateAndTime"));
+                        final String id = result.getObjectId();
+
+
+                        // Do not display the trip if the user has already joined it.
+                        final ParseQuery<ParseObject> alreadyJoined = ParseQuery.getQuery("Takes");
+                        alreadyJoined.whereNotEqualTo("tripId", ParseObject.createWithoutData("Trips", "objectId"));
+                        alreadyJoined.whereNotEqualTo("username", ParseObject.createWithoutData("User", "username"));
+                        alreadyJoined.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> objects, ParseException e) {
+                                if (e == null) {
+                                    for (int j = 0; j < objects.size(); j++) {
+                                        // If the same trip is being referenced.
+                                        Log.d(String.valueOf(objectsCopy.get(iCopy).get("objectId")), String.valueOf(objects.get(j).get("tripId")));
+                                        //if (objectsCopy.get(iCopy).get("objectId") == objects.get(j).get("tripId")) {
+//                                            Log.d("SUCCCCCCEESSS", "SSSSSS");
+//                                            Log.d("getting", "here");
+//                                            Log.d("destination", objectsCopy.get(iCopy).getString("destination"));
+//                                        Log.d("availableSeats", String.valueOf(objectsCopy.get(iCopy).getInt("availableSeats")));
+//                                            Log.d("date", String.valueOf(objectsCopy.get(iCopy).getDate("departureDateAndTime")));
+//                                            Log.d("id", objectsCopy.get(iCopy).getObjectId());
+                                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
+                                       // }
+                                    }
+                                }
+
+                            }
+                        });
                     }
                 } else { // TODO this does not show up, fix it
                     Log.d("FAILUREEEEEE", "EEEE");
@@ -68,6 +100,7 @@ public class JoinTripActivity extends AppCompatActivity {
                 }
             }
         });
+
 //        query.setLimit(5);
 
         btnAddTrip = (Button) findViewById(R.id.btnAddTrip);
