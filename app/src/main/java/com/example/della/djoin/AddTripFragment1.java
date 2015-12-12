@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseObject;
 
@@ -53,10 +54,8 @@ public class AddTripFragment1 extends Fragment {
         createdBy = MainActivity.loggedInUser;
         dbHelper = new DBHelper(getActivity());
 
-
         return view;
     }
-
 
     @Override
     public void onResume() {
@@ -70,7 +69,6 @@ public class AddTripFragment1 extends Fragment {
         db.close();
     }
 
-
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
         @Override
@@ -78,33 +76,35 @@ public class AddTripFragment1 extends Fragment {
 
             // Click next button
             if(v == nextButton) {
-                // Create new transaction
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
+                if (etDestination.getText().toString().matches("") || etStartLocation.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    // Create new transaction
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-                // Add the first page's trip information to the database.
-                trips = new ParseObject("Trips");
-                trips.put("createdBy", createdBy);
-                trips.put("startLocation", etStartLocation.getText().toString());
-                trips.put("destination", etDestination.getText().toString());
-                trips.put("roundTripBool", cbRoundTrip.isChecked());
+                    // Add the first page's trip information to the database.
+                    trips = new ParseObject("Trips");
+                    trips.put("createdBy", createdBy);
+                    trips.put("startLocation", etStartLocation.getText().toString());
+                    trips.put("destination", etDestination.getText().toString());
+                    trips.put("roundTripBool", cbRoundTrip.isChecked());
 
 
-                // Further required user input depends on whether or not the trip is tround trip.
-                if (cbRoundTrip.isChecked()) {
-                    nextFrag = new AddTripFragment2b();
+                    // Further required user input depends on whether or not the trip is tround trip.
+                    if (cbRoundTrip.isChecked()) {
+                        nextFrag = new AddTripFragment2b();
+                    }
+                    else {
+                        nextFrag = new AddTripFragment2a();
+                    }
+
+                    // Replace whatever is in the fragment container view with this fragment
+                    // and add the transaction to the back stack.
+                    trans.replace(R.id.addTrip, nextFrag);
+                    trans.addToBackStack(null);
+                    trans.commit();
                 }
-                else {
-                    nextFrag = new AddTripFragment2a();
-                }
-
-                // Replace whatever is in the fragment container view with this fragment
-                // and add the transaction to the back stack.
-                trans.replace(R.id.addTrip, nextFrag);
-                trans.addToBackStack(null);
-                trans.commit();
             }
-
         }
-
     };
 }

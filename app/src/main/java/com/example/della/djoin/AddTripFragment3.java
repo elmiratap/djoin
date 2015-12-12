@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -79,19 +80,25 @@ public class AddTripFragment3 extends Fragment {
         @Override
         public void onClick(View v) {
             if(v == doneButton) {
-                // Add all information to the database and switch to the MyTrips screen.
-                Intent intent = new Intent(getActivity(), MyTrips.class);
-                AddTripFragment1.trips.put("availableSeats", Integer.parseInt(etAvailableSeats.getText().toString()));
-                AddTripFragment1.trips.put("carMake", etCarMake.getText().toString());
-                AddTripFragment1.trips.put("carModel", etCarModel.getText().toString());
-                AddTripFragment1.trips.put("carColor", etCarColor.getText().toString());
-                AddTripFragment1.trips.put("details", etDetails.getText().toString());
+                if (etAvailableSeats.getText().toString().matches("") || etCarMake.getText().toString().matches("")
+                        || etCarModel.getText().toString().matches("") || etCarColor.getText().toString().matches("")
+                        || etDetails.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    // Add all information to the database and switch to the MyTrips screen.
+                    Intent intent = new Intent(getActivity(), MyTrips.class);
+                    AddTripFragment1.trips.put("availableSeats", Integer.parseInt(etAvailableSeats.getText().toString()));
+                    AddTripFragment1.trips.put("carMake", etCarMake.getText().toString());
+                    AddTripFragment1.trips.put("carModel", etCarModel.getText().toString());
+                    AddTripFragment1.trips.put("carColor", etCarColor.getText().toString());
+                    AddTripFragment1.trips.put("details", etDetails.getText().toString());
 
-                // Persist information from all steps to the database.
-                // Do not persist if the user has not gone through all the steps.
-                AddTripFragment1.trips.saveInBackground();
+                    // Persist information from all steps to the database.
+                    // Do not persist if the user has not gone through all the steps.
+                    AddTripFragment1.trips.saveInBackground();
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
             }
         }
 

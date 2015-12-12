@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,18 +16,10 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AddTripFragment2b.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AddTripFragment2b#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddTripFragment2b extends Fragment {
 
     View view;
@@ -116,23 +106,26 @@ public class AddTripFragment2b extends Fragment {
         @Override
         public void onClick(View v) {
             if(v == nextButton) {
+                if (etDepartureDate.getText().toString().matches("") || etDepartureTime.getText().toString().matches("")
+                        || etReturnDate.getText().toString().matches("") || etReturnTime.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    // Create new transaction
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
+                    AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
+                    AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
+                    AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
+                    nextFrag = new AddTripFragment3();
 
-                // Create new transaction
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
-                AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
-                AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
-                AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
-                AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
-                nextFrag = new AddTripFragment3();
-
-                // Replace whatever is in the fragment container view with this fragment
-                // and add the transaction to the back stack.
-                trans.replace(R.id.addTrip, nextFrag);
-                trans.addToBackStack(null);
-                trans.commit();
+                    // Replace whatever is in the fragment container view with this fragment
+                    // and add the transaction to the back stack.
+                    trans.replace(R.id.addTrip, nextFrag);
+                    trans.addToBackStack(null);
+                    trans.commit();
+                }
             }
         }
-
     };
 
 

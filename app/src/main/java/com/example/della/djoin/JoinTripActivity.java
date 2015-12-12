@@ -46,19 +46,28 @@ public class JoinTripActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         Date now = c.getTime();
 
+        final ParseQuery<ParseObject> alreadyJoined = ParseQuery.getQuery("Takes");
+//        alreadyJoined.whereNotEqualTo("tripId", ParseObject.createWithoutData("Trips", "objectId"));
+//        alreadyJoined.whereNotEqualTo("username", ParseObject.createWithoutData("User", "username"));
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
         query.whereNotEqualTo("createdBy", MainActivity.loggedInUser);
         query.whereGreaterThan("availableSeats", 0);
         query.whereGreaterThan("departureDateAndTime", now);
+        query.include("Takes");
+        query.whereMatchesKeyInQuery("objectId", "tripId", alreadyJoined);
+        query.whereMatchesQuery("username", alreadyJoined);
 
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
+                    Log.d("This works, thank Jesus", "yessss");
+                    Log.d(String.valueOf(objects.size()), "kleenex");
                     ParseObject result;
                     for (int i = 0; i < objects.size(); i++) {
+                        Log.d("this is the id", "something");
                         final List<ParseObject> objectsCopy = objects;
-                        final int iCopy = i;
                         result = objects.get(i);
 
 
@@ -67,32 +76,32 @@ public class JoinTripActivity extends AppCompatActivity {
                         final String date = String.valueOf(result.getDate("departureDateAndTime"));
                         final String id = result.getObjectId();
 
-
+                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
                         // Do not display the trip if the user has already joined it.
-                        final ParseQuery<ParseObject> alreadyJoined = ParseQuery.getQuery("Takes");
-                        alreadyJoined.whereNotEqualTo("tripId", ParseObject.createWithoutData("Trips", "objectId"));
-                        alreadyJoined.whereNotEqualTo("username", ParseObject.createWithoutData("User", "username"));
-                        alreadyJoined.findInBackground(new FindCallback<ParseObject>() {
-                            @Override
-                            public void done(List<ParseObject> objects, ParseException e) {
-                                if (e == null) {
-                                    for (int j = 0; j < objects.size(); j++) {
-                                        // If the same trip is being referenced.
-                                        Log.d(String.valueOf(objectsCopy.get(iCopy).get("objectId")), String.valueOf(objects.get(j).get("tripId")));
-                                        //if (objectsCopy.get(iCopy).get("objectId") == objects.get(j).get("tripId")) {
-//                                            Log.d("SUCCCCCCEESSS", "SSSSSS");
-//                                            Log.d("getting", "here");
-//                                            Log.d("destination", objectsCopy.get(iCopy).getString("destination"));
-//                                        Log.d("availableSeats", String.valueOf(objectsCopy.get(iCopy).getInt("availableSeats")));
-//                                            Log.d("date", String.valueOf(objectsCopy.get(iCopy).getDate("departureDateAndTime")));
-//                                            Log.d("id", objectsCopy.get(iCopy).getObjectId());
-                                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
-                                       // }
-                                    }
-                                }
-
-                            }
-                        });
+//                        final ParseQuery<ParseObject> alreadyJoined = ParseQuery.getQuery("Takes");
+//                        alreadyJoined.whereNotEqualTo("tripId", ParseObject.createWithoutData("Trips", "objectId"));
+//                        alreadyJoined.whereNotEqualTo("username", ParseObject.createWithoutData("User", "username"));
+//                        alreadyJoined.findInBackground(new FindCallback<ParseObject>() {
+//                            @Override
+//                            public void done(List<ParseObject> objects, ParseException e) {
+//                                if (e == null) {
+//                                    for (int j = 0; j < objects.size(); j++) {
+//                                        // If the same trip is being referenced.
+//                                        Log.d(String.valueOf(objectsCopy.get(iCopy).get("objectId")), String.valueOf(objects.get(j).get("tripId")));
+//                                        //if (objectsCopy.get(iCopy).get("objectId") == objects.get(j).get("tripId")) {
+////                                            Log.d("SUCCCCCCEESSS", "SSSSSS");
+////                                            Log.d("getting", "here");
+////                                            Log.d("destination", objectsCopy.get(iCopy).getString("destination"));
+////                                        Log.d("availableSeats", String.valueOf(objectsCopy.get(iCopy).getInt("availableSeats")));
+////                                            Log.d("date", String.valueOf(objectsCopy.get(iCopy).getDate("departureDateAndTime")));
+////                                            Log.d("id", objectsCopy.get(iCopy).getObjectId());
+//                                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
+//                                       // }
+//                                    }
+//                                }
+//
+//                            }
+//                        });
                     }
                 } else { // TODO this does not show up, fix it
                     Log.d("FAILUREEEEEE", "EEEE");

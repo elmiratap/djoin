@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -132,30 +133,32 @@ public class AddTripFragment2a extends Fragment  {
         @Override
         public void onClick(View v) {
             if(v == nextButton) {
+                if (etDepartureDate.getText().toString().matches("") || etDepartureTime.getText().toString().matches("")) {
+                    Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
+                } else {
+                    // Create new transaction
+                    FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-                // Create new transaction
-                FragmentTransaction trans = getFragmentManager().beginTransaction();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+                    String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
 
-                String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
-
-                try {
-                    AddTripFragment1.trips.put("departureDateAndTime", dateFormat.parse(dateTime));
+                    try {
+                        AddTripFragment1.trips.put("departureDateAndTime", dateFormat.parse(dateTime));
 //                    AddTripFragment1.trips.put("departureTime", timeFormat.parse(etDepartureTime.getText().toString()));
-                } catch (ParseException e) {
-                    Log.d("date time don't persist", "bad");
+                    } catch (ParseException e) {
+                        Log.d("date time don't persist", "bad");
+                    }
+
+                    // Proceed to the next step.
+                    nextFrag = new AddTripFragment3();
+
+                    // Replace whatever is in the fragment container view with this fragment
+                    // and add the transaction to the back stack.
+                    trans.replace(R.id.addTrip, nextFrag);
+                    trans.addToBackStack(null);
+                    trans.commit();
                 }
-
-                // Proceed to the next step.
-                nextFrag = new AddTripFragment3();
-
-                // Replace whatever is in the fragment container view with this fragment
-                // and add the transaction to the back stack.
-                trans.replace(R.id.addTrip, nextFrag);
-                trans.addToBackStack(null);
-                trans.commit();
-
             }
         }
 
