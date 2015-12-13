@@ -41,7 +41,7 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final View itemView;
         if (convertView != null) {
             itemView = convertView;
@@ -63,8 +63,6 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
         btnJoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // view saved for access from inner loops
                 ParseQuery<ParseObject> tripIdQuery = ParseQuery.getQuery("Trips");
                 tripIdQuery.whereEqualTo("objectId", tvTripId.getText().toString());
                 tripIdQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -73,13 +71,14 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
                         if (e == null) { // TODO do extra check to make sure the trip is still valid
                             for (ParseObject object : objects) {
                                 object.put("availableSeats", tripList.getNumSeats() - 1);
+
                                 object.saveInBackground();
                             }
 
                             // Add the trip to the Takes table.
-                            takes = new ParseObject("Takes");
-                            takes.put("tripId", ParseObject.createWithoutData("Trips", tvTripId.getText().toString()));
-                            takes.put("username", ParseObject.createWithoutData("User", MainActivity.loggedInUser));
+                            takes = new ParseObject("TakesTrip");
+                            takes.put("tripId", tvTripId.getText().toString());
+                            takes.put("username", MainActivity.loggedInUser);
                             takes.saveInBackground();
 
                         } else {
@@ -91,6 +90,7 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
                 AlertDialog.Builder joinedDialogBuilder = new AlertDialog.Builder(context);
                 joinedDialogBuilder
                         .setView(R.layout.joined_dialog_layout)
+                        // Go to the My Trips screen.
                         .setPositiveButton("See My Trips", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -99,10 +99,12 @@ public class JoinTripsListAdapter extends ArrayAdapter<JoinTripsList> {
                             }
                         })
 
-                                // when the user doesn't want to delete their trip
+                        // Go back to the list of trips available to join.
                         .setNegativeButton("Go back", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                // Remove the trip the user just joined from the list.
+                                remove(getItem(position));
                                 dialog.cancel();
                             }
                         });

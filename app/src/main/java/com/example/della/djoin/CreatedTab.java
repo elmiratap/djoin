@@ -3,7 +3,6 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,8 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,21 +50,24 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
         createdTripList = new ArrayList<CreatedTripList>();
         adapter = new CreatedTripsListAdapter(getActivity(), R.layout.list_view,createdTripList);
 
-//        createdTripList.add(new CreatedTripList("Target", "4 seats left", "Today 6:00 PM"));
         c = getActivity();
         lvCreatedTrips = (ListView) view.findViewById(R.id.lvCreatedTrips);
         lvCreatedTrips.setAdapter(adapter);
         //lvCreatedTrips.setAdapter(new CreatedTripsListAdapter(c, R.layout.list_view, createdTripList));
 
+        // Only show trips that are in the future and created by the logged in user.
+        Calendar c = Calendar.getInstance();
+        Date now = c.getTime();
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
         query.whereEqualTo("createdBy", MainActivity.loggedInUser);
+        query.whereGreaterThan("departureDateAndTime", now);
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
                     ParseObject result;
-                    for (int i=0; i<objects.size(); i++) {
-                        Log.d("SUCCCCCCEESSS", "SSSSSS");
+                    for (int i = 0; i < objects.size(); i++) {
                         result = objects.get(i);
                         String destination = result.getString("destination");
                         int numSeats = result.getInt("availableSeats");
@@ -76,7 +80,6 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
 //                    adapter.notifyDataSetChanged();
 
                 } else { // TODO this does not show up, fix it
-                    Log.d("FAILUREEEEEE", "EEEE");
                     // If there are no results, display appropriate message.
                     tvNoCreatedTrips.setVisibility(View.VISIBLE);
                 }

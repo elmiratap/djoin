@@ -72,19 +72,24 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // views saved to access specific components of the list view
+                                // Views saved to access specific components of the list view
                                 ListView lv = (ListView) itemView.getParent();
                                 RelativeLayout rl = (RelativeLayout) view.getParent();
                                 final TextView tvTripId = (TextView) rl.findViewById(R.id.tvTripId);
                                 final int taggedPosition = lv.getPositionForView(itemView);
+
+                                //
+//                                ParseQuery<ParseObject> takesTripIdQ = ParseQuery.getQuery("TakesTrip");
+                                // TODO potentially use afterDelete
                                 // query that finds a trip by its id for deletion
-                                ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
-                                query.whereEqualTo("objectId", tvTripId.getText().toString());
-                                query.findInBackground(new FindCallback<ParseObject>() {
+                                ParseQuery<ParseObject> tripIdQ = ParseQuery.getQuery("Trips");
+                                tripIdQ.whereEqualTo("objectId", tvTripId.getText().toString());
+//                                tripIdQ.whereDoesNotMatchKeyInQuery("objectId", "tripId", takesTripIdQ);
+                                tripIdQ.findInBackground(new FindCallback<ParseObject>() {
                                     @Override
                                     public void done(List<ParseObject> objects, ParseException e) {
                                         if (e == null) {
-                                            for(ParseObject object : objects) {
+                                            for (ParseObject object : objects) {
                                                 // removes the trip from the database
                                                 object.deleteInBackground(new DeleteCallback() {
                                                     @Override

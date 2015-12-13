@@ -17,9 +17,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.parse.Parse;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -133,32 +136,47 @@ public class AddTripFragment2a extends Fragment  {
         @Override
         public void onClick(View v) {
             if(v == nextButton) {
+
+                // Make sure the user filled in all of the fields
                 if (etDepartureDate.getText().toString().matches("") || etDepartureTime.getText().toString().matches("")) {
                     Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
-                } else {
-                    // Create new transaction
-                    FragmentTransaction trans = getFragmentManager().beginTransaction();
-
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
-
-                    String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
-
-                    try {
-                        AddTripFragment1.trips.put("departureDateAndTime", dateFormat.parse(dateTime));
-//                    AddTripFragment1.trips.put("departureTime", timeFormat.parse(etDepartureTime.getText().toString()));
-                    } catch (ParseException e) {
-                        Log.d("date time don't persist", "bad");
-                    }
-
-                    // Proceed to the next step.
-                    nextFrag = new AddTripFragment3();
-
-                    // Replace whatever is in the fragment container view with this fragment
-                    // and add the transaction to the back stack.
-                    trans.replace(R.id.addTrip, nextFrag);
-                    trans.addToBackStack(null);
-                    trans.commit();
                 }
+
+                // Check that the date for the trip is in the future.
+                Calendar c = Calendar.getInstance();
+                Date now = c.getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+                String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
+
+                try {
+                    Date dateTimeAsDate = dateFormat.parse(dateTime);
+                    if (dateTimeAsDate.before(now)) {
+                        Toast.makeText(getActivity(), "Please enter a date in the future.", Toast.LENGTH_LONG).show();
+                    } else { // All inputs ar valid.
+                        // Create new transaction
+                        FragmentTransaction trans = getFragmentManager().beginTransaction();
+
+//                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+//
+//                    String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
+
+
+                        AddTripFragment1.trips.put("departureDateAndTime", dateTimeAsDate);
+//                    AddTripFragment1.trips.put("departureTime", timeFormat.parse(etDepartureTime.getText().toString()));
+
+                        // Proceed to the next step.
+                        nextFrag = new AddTripFragment3();
+
+                        // Replace whatever is in the fragment container view with this fragment
+                        // and add the transaction to the back stack.
+                        trans.replace(R.id.addTrip, nextFrag);
+                        trans.addToBackStack(null);
+                        trans.commit();
+                    }
+                } catch (ParseException e) {
+
+                }
+
             }
         }
 

@@ -18,7 +18,10 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddTripFragment2b extends Fragment {
 
@@ -109,20 +112,40 @@ public class AddTripFragment2b extends Fragment {
                 if (etDepartureDate.getText().toString().matches("") || etDepartureTime.getText().toString().matches("")
                         || etReturnDate.getText().toString().matches("") || etReturnTime.getText().toString().matches("")) {
                     Toast.makeText(getActivity(), "Please fill in all fields.", Toast.LENGTH_LONG).show();
-                } else {
-                    // Create new transaction
-                    FragmentTransaction trans = getFragmentManager().beginTransaction();
-                    AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
-                    AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
-                    AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
-                    AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
-                    nextFrag = new AddTripFragment3();
+                }
 
-                    // Replace whatever is in the fragment container view with this fragment
-                    // and add the transaction to the back stack.
-                    trans.replace(R.id.addTrip, nextFrag);
-                    trans.addToBackStack(null);
-                    trans.commit();
+                // Check that the dates are valid.
+                Calendar c = Calendar.getInstance();
+                Date now = c.getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+                String departureDateAsString = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
+                String returnDateAsString = etReturnDate.getText().toString() + " " + etReturnTime.getText().toString();
+
+                try {
+                    // Conver the strings to Date types to compare them.
+                    Date departureDateAsDate = dateFormat.parse(departureDateAsString);
+                    Date returnDateAsDate = dateFormat.parse(returnDateAsString);
+
+                    // The departure date is in the past or the return date is before the departure date.
+                    if (departureDateAsDate.before(now) || returnDateAsDate.before(departureDateAsDate)) {
+                        Toast.makeText(getActivity(), "Please enter valid dates.", Toast.LENGTH_LONG).show();
+                    } else { // All inputs are valid.
+                        // Create new transaction
+                        FragmentTransaction trans = getFragmentManager().beginTransaction();
+                        AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
+                        AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
+                        AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
+                        AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
+                        nextFrag = new AddTripFragment3();
+
+                        // Replace whatever is in the fragment container view with this fragment
+                        // and add the transaction to the back stack.
+                        trans.replace(R.id.addTrip, nextFrag);
+                        trans.addToBackStack(null);
+                        trans.commit();
+                    }
+                } catch (ParseException e) {
+
                 }
             }
         }
@@ -216,24 +239,4 @@ public class AddTripFragment2b extends Fragment {
                     + "-" + String.valueOf(year));
         }
     };
-
-//    Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){
-//        Fragment nextFrag;
-//        @Override
-//        public void onClick(View v) {
-//            if(v == nextButton) {
-//                nextFrag = new AddTripFragment2b();
-//                // Create new transaction
-//                FragmentTransaction trans = getFragmentManager().beginTransaction();
-//
-//                // Replace whatever is in the fragment container view with this fragment
-//                // and add the transaction to the back stack.
-//                trans.replace(R.id.addTrip, nextFrag);
-//                trans.addToBackStack(null);
-//                trans.commit();
-//            }
-//        }
-//
-//    };
-
 }
