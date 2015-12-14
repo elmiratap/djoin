@@ -132,10 +132,8 @@ public class AddTripFragment2b extends Fragment {
                     } else { // All inputs are valid.
                         // Create new transaction
                         FragmentTransaction trans = getFragmentManager().beginTransaction();
-                        AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
-                        AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
-                        AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
-                        AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
+                        AddTripFragment1.trips.put("departureDateAndTime", departureDateAsDate);
+                        AddTripFragment1.trips.put("returnDateAndTime", returnDateAsDate);
                         nextFrag = new AddTripFragment3();
 
                         // Replace whatever is in the fragment container view with this fragment

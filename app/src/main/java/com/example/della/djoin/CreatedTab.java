@@ -3,6 +3,7 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
+                    Log.d("in the loop", "good");
                     ParseObject result;
                     for (int i = 0; i < objects.size(); i++) {
                         result = objects.get(i);
@@ -73,6 +75,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                         int numSeats = result.getInt("availableSeats");
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
                         String id = result.getObjectId();
+                        Log.d(id, "your trip");
                         adapter.add(new CreatedTripList(destination, numSeats, date, id));
 //                        createdTripList.add(new CreatedTripList(destination, numSeats, date));
                     }
@@ -81,6 +84,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
 
                 } else { // TODO this does not show up, fix it
                     // If there are no results, display appropriate message.
+                    Log.d("query doesn't work", e.getMessage());
                     tvNoCreatedTrips.setVisibility(View.VISIBLE);
                 }
             }
@@ -94,14 +98,14 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                 startActivity(intent);
             }
         });
-//        btnTest = (Button) view.findViewById(R.id.btnTest);
-//        btnTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), MyInformation.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnTest = (Button) view.findViewById(R.id.btnTest);
+        btnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MyInformation.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

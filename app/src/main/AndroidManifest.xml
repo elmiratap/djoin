@@ -40,6 +40,10 @@
             android:label="@string/title_activity_my_information" >
         </activity>
         <activity
+            android:name=".EditInformation"
+            android:label="EditInformation">
+        </activity>
+        <activity
             android:name=".JoinTripActivity"
             android:label="@string/title_activity_join_trip" >
         </activity>

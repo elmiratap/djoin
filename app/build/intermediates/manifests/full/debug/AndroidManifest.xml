@@ -46,6 +46,10 @@
             android:label="@string/title_activity_my_information" >
         </activity>
         <activity
+            android:name="com.example.della.djoin.EditInformation"
+            android:label="EditInformation" >
+        </activity>
+        <activity
             android:name="com.example.della.djoin.JoinTripActivity"
             android:label="@string/title_activity_join_trip" >
         </activity>

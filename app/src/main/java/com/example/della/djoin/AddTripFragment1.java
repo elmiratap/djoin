@@ -87,7 +87,6 @@ public class AddTripFragment1 extends Fragment {
                     trips.put("createdBy", createdBy);
                     trips.put("startLocation", etStartLocation.getText().toString());
                     trips.put("destination", etDestination.getText().toString());
-                    trips.put("roundTripBool", cbRoundTrip.isChecked());
 
 
                     // Further required user input depends on whether or not the trip is tround trip.

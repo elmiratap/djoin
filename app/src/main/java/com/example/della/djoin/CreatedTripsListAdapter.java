@@ -20,6 +20,9 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -65,6 +68,9 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
             @Override
             public void onClick(View v) {
                 // view saved for access from inner loops
+                final CountDownLatch mCountDownLatch = new CountDownLatch(2);
+                final ExecutorService executor = Executors.newFixedThreadPool(2); // 2 Threads in pool
+
                 final View view = v;
                 AlertDialog.Builder cancelDialogBuilder = new AlertDialog.Builder(context);
                 cancelDialogBuilder
@@ -78,17 +84,20 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                                 final TextView tvTripId = (TextView) rl.findViewById(R.id.tvTripId);
                                 final int taggedPosition = lv.getPositionForView(itemView);
 
-                                //
-//                                ParseQuery<ParseObject> takesTripIdQ = ParseQuery.getQuery("TakesTrip");
-                                // TODO potentially use afterDelete
-                                // query that finds a trip by its id for deletion
                                 ParseQuery<ParseObject> tripIdQ = ParseQuery.getQuery("Trips");
                                 tripIdQ.whereEqualTo("objectId", tvTripId.getText().toString());
-//                                tripIdQ.whereDoesNotMatchKeyInQuery("objectId", "tripId", takesTripIdQ);
                                 tripIdQ.findInBackground(new FindCallback<ParseObject>() {
                                     @Override
                                     public void done(List<ParseObject> objects, ParseException e) {
                                         if (e == null) {
+                                            mCountDownLatch.countDown();
+                                            try {
+                                                mCountDownLatch.await();
+                                            } catch (InterruptedException er) {
+                                                er.printStackTrace();
+                                            } finally {
+                                                // done;
+                                            }
                                             for (ParseObject object : objects) {
                                                 // removes the trip from the database
                                                 object.deleteInBackground(new DeleteCallback() {
@@ -103,13 +112,35 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                                         } else {
                                             Log.d("no trip found", "cry a lot");
                                         }
-
                                     }
                                 });
+
+                                // query that deletes all passengers of trip from take trip table
+                                ParseQuery<ParseObject> inTripQ = ParseQuery.getQuery("TakesTrip");
+                                inTripQ.whereEqualTo("tripId", tvTripId.getText().toString());
+                                tripIdQ.findInBackground(new FindCallback<ParseObject>() {
+                                    @Override
+                                    public void done(List<ParseObject> objects, ParseException e) {
+                                        if (e == null) {
+                                            mCountDownLatch.countDown();
+                                            for (ParseObject object : objects) {
+                                                object.deleteInBackground(new DeleteCallback() {
+                                                    @Override
+                                                    public void done(ParseException e) {
+                                                        Log.d("no one takes the trip", "bye");
+                                                    }
+                                                });
+                                            }
+                                        } else {
+                                            Log.d("no trip found", "cry a lot");
+                                        }
+                                    }
+                                });
+
                             }
                         })
 
-                        // when the user doesn't want to delete their trip
+                                // when the user doesn't want to delete their trip
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

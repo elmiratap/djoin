@@ -21,12 +21,6 @@
         android:hint="Car make"
         />
     <EditText
-        android:id="@+id/etCarModel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Car model"
-        />
-    <EditText
         android:id="@+id/etCarColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
