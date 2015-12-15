@@ -48,7 +48,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
         tvNoCreatedTrips.setVisibility(View.INVISIBLE);
 
         createdTripList = new ArrayList<CreatedTripList>();
-        adapter = new CreatedTripsListAdapter(getActivity(), R.layout.list_view,createdTripList);
+        adapter = new CreatedTripsListAdapter(getActivity(), R.layout.list_view, createdTripList);
 
         c = getActivity();
         lvCreatedTrips = (ListView) view.findViewById(R.id.lvCreatedTrips);

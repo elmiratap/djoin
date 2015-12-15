@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,23 +21,40 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class JoinTripActivity extends AppCompatActivity {
 
     private EditText etSearch;
     private ListView lvSearchableTrips;
-    private List<JoinTripsList> joinTripList;
-    private ArrayAdapter<JoinTripsList> adapter;
+    private List<SearchTripsList> searchTripsList;
+    private ArrayAdapter<SearchTripsList> adapter;
     private Button btnAddTrip;
     private Button btnSearch;
+    private HashSet searchResultHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_trip);
+        searchResultHash = new HashSet();
 
         etSearch = (EditText) findViewById(R.id.etSearch);
+        // When the user taps the search bar, delete the auto-populated list entries
+        etSearch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                adapter.clear();
+                etSearch.setFocusableInTouchMode(true);
+                return false;
+            }
+        });
+        searchTripsList = new ArrayList<SearchTripsList>();
+        adapter = new SearchTripsListAdapter(JoinTripActivity.this, R.layout.list_view, searchTripsList);
+        lvSearchableTrips = (ListView) findViewById(R.id.lvSearchableTrips);
+        lvSearchableTrips.setAdapter(adapter);
+
         btnSearch = (Button) findViewById(R.id.btnSearch);
 
         // Begin a parse query with the search term entered by the user once they tap "go."
@@ -44,7 +62,8 @@ public class JoinTripActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) { //TODO need to hide the keyboard once "go" tapped
                 //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-                //lvSearchableTrips.setAdapter(null);
+                adapter.clear();
+
                 // Get the current date and time.
                 Calendar c = Calendar.getInstance();
                 Date now = c.getTime();
@@ -53,7 +72,7 @@ public class JoinTripActivity extends AppCompatActivity {
                 alreadyJoined.whereEqualTo("username", MainActivity.loggedInUser);
 
                 ParseQuery<ParseObject> searchQuery = ParseQuery.getQuery("Trips");
-                searchQuery.whereEqualTo("destination", etSearch.getText().toString());
+                searchQuery.whereContains("destination", etSearch.getText().toString());
                 searchQuery.whereNotEqualTo("createdBy", MainActivity.loggedInUser);
                 searchQuery.whereGreaterThan("availableSeats", 0);
                 searchQuery.whereGreaterThan("departureDateAndTime", now);
@@ -67,17 +86,20 @@ public class JoinTripActivity extends AppCompatActivity {
                         if (e == null) {
                             ParseObject result;
                             for (int i = 0; i < objects.size(); i++) {
-                                final List<ParseObject> objectsCopy = objects;
                                 result = objects.get(i);
 
                                 Log.d("this is the id", result.getObjectId());
 
-                                final String destination = result.getString("destination");
-                                final int numSeats = result.getInt("availableSeats");
-                                final String date = String.valueOf(result.getDate("departureDateAndTime"));
-                                final String id = result.getObjectId();
+                                String destination = result.getString("destination");
+                                int numSeats = result.getInt("availableSeats");
+                                String date = String.valueOf(result.getDate("departureDateAndTime"));
+                                String id = result.getObjectId();
 
-                                adapter.add(new JoinTripsList(destination, numSeats, date, id));
+                                Log.d("dest", destination);
+
+                                    Log.d("not in here", "yay");
+                                    adapter.add(new SearchTripsList(destination, numSeats, date, id));
+                                    adapter.notifyDataSetChanged();
                             }
                         } else { // TODO this does not show up, fix it
                         }
@@ -85,11 +107,6 @@ public class JoinTripActivity extends AppCompatActivity {
                 });
             }
         });
-
-        joinTripList = new ArrayList<JoinTripsList>();
-        adapter = new JoinTripsListAdapter(JoinTripActivity.this, R.layout.list_view, joinTripList);
-        lvSearchableTrips = (ListView) findViewById(R.id.lvSearchableTrips);
-        lvSearchableTrips.setAdapter(adapter);
 
         // Get the current date and time.
         Calendar c = Calendar.getInstance();
@@ -124,7 +141,7 @@ public class JoinTripActivity extends AppCompatActivity {
                         final String date = String.valueOf(result.getDate("departureDateAndTime"));
                         final String id = result.getObjectId();
 
-                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
+                        adapter.add(new SearchTripsList(destination, numSeats, date, id));
                     }
                 } else { // TODO this does not show up, fix it
                     Log.d("FAILUREEEEEE", "EEEE" + e.getMessage());

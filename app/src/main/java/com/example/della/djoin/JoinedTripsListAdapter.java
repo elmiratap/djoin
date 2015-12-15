@@ -18,24 +18,19 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 
 /**
- * Created by Della on 12/1/2015.
+ * Created by elmira on 12/14/2015.
  */
-public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
-
+public class JoinedTripsListAdapter extends ArrayAdapter<JoinTripsList> {
     private int resource;
     private LayoutInflater inflater;
     private Context context;
-    private List<CreatedTripList> trips;
-    private Button btnCancel;
+    private List<JoinTripsList> trips;
+    private Button btnLeave;
     private TextView tvTripId;
 
-    public CreatedTripsListAdapter(Context c, int resourceId, List<CreatedTripList> trips) {
+    public JoinedTripsListAdapter(Context c, int resourceId, List<JoinTripsList> trips) {
         super(c, resourceId, trips);
         resource = resourceId;
         inflater = LayoutInflater.from(c);
@@ -52,7 +47,7 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
         } else {
             itemView = inflater.inflate(resource, null);
         }
-        final CreatedTripList tripList = getItem(position);
+        final JoinTripsList tripList = getItem(position);
         TextView tvTripId = (TextView) itemView.findViewById(R.id.tvTripId);
         tvTripId.setText(tripList.getId());
         TextView tvDestination = (TextView) itemView.findViewById(R.id.tvDestination);
@@ -61,20 +56,16 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
         tvSeats.setText(tripList.getNumSeats() + " seats left");
-
-        btnCancel = (Button) itemView.findViewById(R.id.btnCancel);
-        btnCancel.setVisibility(View.VISIBLE);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        btnLeave = (Button) itemView.findViewById(R.id.btnLeave);
+        btnLeave.setVisibility(View.VISIBLE);
+        btnLeave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // view saved for access from inner loops
-                final CountDownLatch mCountDownLatch = new CountDownLatch(2);
-                final ExecutorService executor = Executors.newFixedThreadPool(2); // 2 Threads in pool
 
                 final View view = v;
                 AlertDialog.Builder cancelDialogBuilder = new AlertDialog.Builder(context);
                 cancelDialogBuilder
-                        .setTitle("Are you sure you want to delete this trip?")
+                        .setTitle("Are you sure you want to leave this trip?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -88,6 +79,7 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                                 //use async task to delete objects on a background thread and
                                 //update ui when finished, much simpler than using locks
                                 new DeleteTripAndRelatedTakes().execute(tripId, position);
+
 
                             }
                         })
@@ -107,7 +99,6 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
 
         return itemView;
     }
-
     class DeleteTripAndRelatedTakes extends AsyncTask<String,Void,String> {
         int taggedPosition;
         @Override
@@ -125,7 +116,11 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                 List<ParseObject> tripObjects = tripIdQ.find();
                 List<ParseObject> takes = takesTrip.find();
 
-                ParseObject.deleteAll(tripObjects);
+                //ParseObject.deleteAll(tripObjects);
+                for (ParseObject object : tripObjects) {
+                    object.increment("availableSeats");
+                    object.saveEventually();
+                }
                 ParseObject.deleteAll(takes);
 
             } catch (ParseException e) {
@@ -144,6 +139,4 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
             }
         }
     }
-
-
 }

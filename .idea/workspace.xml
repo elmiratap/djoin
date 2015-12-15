@@ -39,48 +39,113 @@
       <file leaf-file-name="JoinTripActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.888889">
-              <caret line="62" column="0" selection-start-line="51" selection-start-column="16" selection-end-line="62" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="99" column="64" selection-start-line="99" selection-start-column="64" selection-end-line="99" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1308#3712#0" expanded="true" />
-                <element signature="e#2539#3686#0" expanded="true" />
-                <element signature="e#3685#3686#0" expanded="true" />
-                <element signature="e#3711#3712#0" expanded="true" />
-                <element signature="e#6131#6368#0" expanded="true" />
-                <element signature="e#6367#6368#0" expanded="true" />
+                <element signature="e#1386#1643#0" expanded="true" />
+                <element signature="e#1642#1643#0" expanded="true" />
+                <element signature="e#2126#4608#0" expanded="true" />
+                <element signature="e#3338#4582#0" expanded="true" />
+                <element signature="e#4581#4582#0" expanded="true" />
+                <element signature="e#4607#4608#0" expanded="true" />
+                <element signature="e#5331#6615#0" expanded="true" />
+                <element signature="e#6614#6615#0" expanded="true" />
+                <element signature="e#6748#6985#0" expanded="true" />
+                <element signature="e#6984#6985#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JoinedTab.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTab.java">
+      <file leaf-file-name="AddTripFragment1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment1.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+              <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddTripFragment3.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment3.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="83" column="56" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.57591623">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding>
-                <element signature="e#2154#3448#0" expanded="true" />
-                <element signature="e#3447#3448#0" expanded="true" />
+                <element signature="e#413#431#0" expanded="true" />
+                <element signature="e#566#584#0" expanded="true" />
+                <element signature="e#900#942#0" expanded="true" />
+                <element signature="e#1045#1078#0" expanded="true" />
+                <element signature="e#1181#1214#0" expanded="true" />
+                <element signature="e#1314#1343#0" expanded="true" />
+                <element signature="e#1452#1491#0" expanded="true" />
+                <element signature="e#1603#1637#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreatedTripsListAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripsListAdapter.java">
+      <file leaf-file-name="CreatedTab.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTab.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41237113">
-              <caret line="82" column="67" selection-start-line="82" selection-start-column="67" selection-end-line="82" selection-end-column="67" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="54" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchTripsListAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/SearchTripsListAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
               <folding>
-                <element signature="e#2615#5248#0" expanded="true" />
-                <element signature="e#3881#5190#0" expanded="true" />
-                <element signature="e#4359#4897#0" expanded="true" />
-                <element signature="e#4896#4897#0" expanded="true" />
-                <element signature="e#5189#5190#0" expanded="true" />
-                <element signature="e#5247#5248#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2256#4926#0" expanded="true" />
+                <element signature="e#2563#3571#0" expanded="true" />
+                <element signature="e#3570#3571#0" expanded="true" />
+                <element signature="e#4925#4926#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list_view.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-43.02941">
+              <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_join_trip.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_trip.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.705882">
+              <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1443,30 +1508,32 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/Menu.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MyTrips.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/NavigationDrawerFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MyInformation.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_information.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CancelDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripList.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_created_tab.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_joined_tab.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripsList.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/joined_dialog_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment3.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment1.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment2a.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment2b.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTab.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/SearchTripsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripsList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTab.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTripsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_created_tab.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_joined_tab.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_join_trip.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTab.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTab.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripsListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment1.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1474,9 +1541,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="width" value="1932" />
-    <option name="height" value="1092" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1918" />
+    <option name="height" value="1078" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1501,9 +1569,10 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
-      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1589,10 +1658,13 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1815,7 +1887,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="0" width="1932" height="1092" extended-state="0" />
+    <frame x="1" y="1" width="1918" height="1078" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1824,20 +1896,20 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32194045" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32138857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299025" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3263506" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32586786" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295699" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18225807" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18201517" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39911798" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39865622" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1848,32 +1920,32 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32855567" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32138857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39977476" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39911798" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299025" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270869" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32586786" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295699" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17776097" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32879046" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18201517" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
@@ -1913,20 +1985,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1958,20 +2016,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_trip_fragment3.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.941176">
           <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_trip.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_add_trip.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.294118">
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
@@ -1980,16 +2035,19 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_trip_fragment2b.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_trip_fragment2b.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="33" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml">
@@ -2008,36 +2066,36 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tool_bar.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.0588236">
           <caret line="40" column="34" selection-start-line="40" selection-start-column="34" selection-end-line="40" selection-end-column="34" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_menu.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_menu.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8929889">
           <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/Menu.java">
@@ -2054,17 +2112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.058824">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.parse/parse-android/1.11.0/b34ac0239195279b64552416ac09768888d8ef9f/parse-android-1.11.0-sources.jar!/com/parse/ParseObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -2073,14 +2120,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_trip_fragment2a.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="29" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="29" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
@@ -2092,38 +2139,31 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_add_trip_fragment1.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="60" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_information.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_information.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.529412">
           <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.17647">
           <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -2157,62 +2197,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_trips.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.62069">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_joined_tab.xml">
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.896552">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-          <folding>
-            <element signature="e#223#258#0" expanded="true" />
-            <element signature="e#284#319#0" expanded="true" />
-            <element signature="e#343#376#0" expanded="true" />
-            <element signature="e#403#436#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.827586">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/joined_dialog_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10701107">
           <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6111111">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/DBHelper.java">
@@ -2235,18 +2238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_created_tab.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.470588">
-          <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2265,45 +2256,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3024055">
-          <caret line="86" column="24" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7182131">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MyInformation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="32" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripsListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="84" column="68" selection-start-line="84" selection-start-column="66" selection-end-line="84" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2244#4915#0" expanded="true" />
-            <element signature="e#2551#3560#0" expanded="true" />
-            <element signature="e#3559#3560#0" expanded="true" />
-            <element signature="e#3868#4233#0" expanded="true" />
-            <element signature="e#4232#4233#0" expanded="true" />
-            <element signature="e#4365#4778#0" expanded="true" />
-            <element signature="e#4777#4778#0" expanded="true" />
-            <element signature="e#4914#4915#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2311,7 +2267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18900344">
           <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2326,84 +2281,209 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_trip.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/SearchTripsList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2810219">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="23" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="23" />
+          <folding>
+            <element signature="e#924#925#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripsList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1512028">
-          <caret line="44" column="23" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="23" />
-          <folding>
-            <element signature="e#920#921#0" expanded="true" />
-            <element signature="e#945#946#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2014652">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="64" column="41" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="41" />
-          <folding>
-            <element signature="e#3437#3438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.888889">
-          <caret line="62" column="0" selection-start-line="51" selection-start-column="16" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1308#3712#0" expanded="true" />
-            <element signature="e#2539#3686#0" expanded="true" />
-            <element signature="e#3685#3686#0" expanded="true" />
-            <element signature="e#3711#3712#0" expanded="true" />
-            <element signature="e#6131#6368#0" expanded="true" />
-            <element signature="e#6367#6368#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTab.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="26" selection-start-line="90" selection-start-column="26" selection-end-line="90" selection-end-column="26" />
+          <caret line="51" column="85" selection-start-line="51" selection-start-column="85" selection-end-line="51" selection-end-column="85" />
           <folding>
-            <element signature="e#2154#3448#0" expanded="true" />
-            <element signature="e#3447#3448#0" expanded="true" />
+            <element signature="e#2701#3897#0" expanded="true" />
+            <element signature="e#3896#3897#0" expanded="true" />
+            <element signature="e#4009#4247#0" expanded="true" />
+            <element signature="e#4246#4247#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinedTripsListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="78" selection-start-line="79" selection-start-column="78" selection-end-line="79" selection-end-column="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2141#4163#0" expanded="true" />
+            <element signature="e#2529#3624#0" expanded="true" />
+            <element signature="e#3623#3624#0" expanded="true" />
+            <element signature="e#3759#4026#0" expanded="true" />
+            <element signature="e#4025#4026#0" expanded="true" />
+            <element signature="e#4162#4163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.088235">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_created_tab.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.558824">
+          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_joined_tab.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0408163">
+          <caret line="28" column="46" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9598604">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTripsListAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41237113">
-          <caret line="82" column="67" selection-start-line="82" selection-start-column="67" selection-end-line="82" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.7020484">
+          <caret line="76" column="66" selection-start-line="76" selection-start-column="60" selection-end-line="76" selection-end-column="66" />
           <folding>
-            <element signature="e#2615#5248#0" expanded="true" />
-            <element signature="e#3881#5190#0" expanded="true" />
-            <element signature="e#4359#4897#0" expanded="true" />
-            <element signature="e#4896#4897#0" expanded="true" />
-            <element signature="e#5189#5190#0" expanded="true" />
-            <element signature="e#5247#5248#0" expanded="true" />
+            <element signature="e#2285#4546#0" expanded="true" />
+            <element signature="e#4545#4546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-43.02941">
+          <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_join_trip.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.705882">
+          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/SearchTripsListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="45" selection-start-line="67" selection-start-column="45" selection-end-line="67" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2256#4926#0" expanded="true" />
+            <element signature="e#2563#3571#0" expanded="true" />
+            <element signature="e#3570#3571#0" expanded="true" />
+            <element signature="e#4925#4926#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/CreatedTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="8" selection-start-line="50" selection-start-column="8" selection-end-line="54" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/JoinTripActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="99" column="64" selection-start-line="99" selection-start-column="64" selection-end-line="99" selection-end-column="64" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1386#1643#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <element signature="e#2126#4608#0" expanded="true" />
+            <element signature="e#3338#4582#0" expanded="true" />
+            <element signature="e#4581#4582#0" expanded="true" />
+            <element signature="e#4607#4608#0" expanded="true" />
+            <element signature="e#5331#6615#0" expanded="true" />
+            <element signature="e#6614#6615#0" expanded="true" />
+            <element signature="e#6748#6985#0" expanded="true" />
+            <element signature="e#6984#6985#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/della/djoin/AddTripFragment3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="83" column="56" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57591623">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <folding>
+            <element signature="e#413#431#0" expanded="true" />
+            <element signature="e#566#584#0" expanded="true" />
+            <element signature="e#900#942#0" expanded="true" />
+            <element signature="e#1045#1078#0" expanded="true" />
+            <element signature="e#1181#1214#0" expanded="true" />
+            <element signature="e#1314#1343#0" expanded="true" />
+            <element signature="e#1452#1491#0" expanded="true" />
+            <element signature="e#1603#1637#0" expanded="true" />
           </folding>
         </state>
       </provider>

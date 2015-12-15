@@ -1,15 +1,15 @@
 package com.example.della.djoin;
 
 /**
- * Created by elmira on 12/14/2015.
+ * Created by Della on 12/6/2015.
  */
-public class JoinTripsList {
+public class SearchTripsList {
     private String destination;
     private int numSeats;
     private String date;
     private String id;
 
-    public JoinTripsList(String destination, int numSeats, String date, String id) {
+    public SearchTripsList(String destination, int numSeats, String date, String id) {
         super();
         this.destination = destination;
         this.numSeats = numSeats;
@@ -49,4 +49,5 @@ public class JoinTripsList {
     public void setId(String id) {
         this.id = id;
     }
+
 }

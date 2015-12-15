@@ -86,7 +86,7 @@ public class AddTripFragment1 extends Fragment {
                     trips = new ParseObject("Trips");
                     trips.put("createdBy", createdBy);
                     trips.put("startLocation", etStartLocation.getText().toString());
-                    trips.put("destination", etDestination.getText().toString());
+                    trips.put("destination", etDestination.getText().toString().toLowerCase());
                     trips.put("roundTripBool", cbRoundTrip.isChecked());
 
 
