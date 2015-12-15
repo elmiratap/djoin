@@ -95,6 +95,7 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(context, MyTrips.class);
                                 context.startActivity(intent);
+                                // TODO need finish here?
                             }
                         })
 

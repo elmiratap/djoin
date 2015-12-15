@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -8,31 +7,26 @@
     android:orientation="vertical"
     tools:context="com.example.della.djoin.MyInformation">
 
-    <EditText
-        android:id="@+id/etName"
+    <TextView
+        android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"/>
-    <EditText
-        android:id="@+id/etCarColor"
+        />
+    <TextView
+        android:id="@+id/tvCarColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Car Color"/>
-    <EditText
-        android:id="@+id/etCarMake"
+        />
+    <TextView
+        android:id="@+id/tvCarMake"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Car Make"/>
-    <EditText
-        android:id="@+id/etCarModel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Car Model"/>
+        />
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"/>
+        android:text="Edit"/>
 
 
 </LinearLayout>

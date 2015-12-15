@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.example.della.djoin.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -26,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.della.djoin.RegisterActivity"
+            android:name="com.example.della.djoin.Register"
             android:label="@string/title_activity_register_activity" >
         </activity>
         <activity
@@ -38,15 +39,15 @@
             android:label="@string/title_activity_my_trips" >
         </activity>
         <activity
-            android:name="com.example.della.djoin.Menu"
-            android:label="@string/title_activity_menu" >
-        </activity>
-        <activity
             android:name="com.example.della.djoin.MyInformation"
             android:label="@string/title_activity_my_information" >
         </activity>
         <activity
-            android:name="com.example.della.djoin.JoinTripActivity"
+            android:name="com.example.della.djoin.EditInformation"
+            android:label="EditInformation" >
+        </activity>
+        <activity
+            android:name="com.example.della.djoin.SearchTrips"
             android:label="@string/title_activity_join_trip" >
         </activity>
     </application>

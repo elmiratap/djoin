@@ -1,5 +1,22 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/my_trips"
+        android:title="My Trips"
+        app:showAsAction="always"/>
+    <item android:id="@+id/add_trip"
+        android:title="Add Trip"
+        app:showAsAction="always"/>
+    <item android:id="@+id/join_trip"
+        android:title="Join Trip"
+        app:showAsAction="always"/>
+    <item android:id="@+id/my_information"
+        android:title="My Information"
+        app:showAsAction="always"/>
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="always"/>
 </menu>
+
+
 <!-- From: file:/C:/Users/elmira/djoin/app/src/main/res/menu/global.xml -->

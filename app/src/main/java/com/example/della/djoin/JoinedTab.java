@@ -109,8 +109,9 @@ public class JoinedTab extends android.support.v4.app.Fragment {
         btnFindTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), JoinTripActivity.class);
+                Intent intent = new Intent(getActivity(), SearchTrips.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

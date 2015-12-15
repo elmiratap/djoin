@@ -26,7 +26,6 @@ import java.util.List;
  */
 public class CreatedTab extends android.support.v4.app.Fragment  {
     private Button btnAddTrip;
-    private Button btnTest;
     private ListView lvCreatedTrips;
     private List<CreatedTripList> createdTripList;
     private Context c;
@@ -44,6 +43,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
         // properly.
         View view =  inflater.inflate(R.layout.fragment_created_tab, container, false);
 
+//        setHasOptionsMenu(true);
         tvNoCreatedTrips = (TextView)view.findViewById(R.id.tvNoCreatedTrips);
         tvNoCreatedTrips.setVisibility(View.INVISIBLE);
 
@@ -74,10 +74,8 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
                         String id = result.getObjectId();
                         adapter.add(new CreatedTripList(destination, numSeats, date, id));
-//                        createdTripList.add(new CreatedTripList(destination, numSeats, date));
                     }
 
-//                    adapter.notifyDataSetChanged();
 
                 } else { // TODO this does not show up, fix it
                     // If there are no results, display appropriate message.
@@ -92,19 +90,42 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddTrip.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
-//        btnTest = (Button) view.findViewById(R.id.btnTest);
-//        btnTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), MyInformation.class);
-//                startActivity(intent);
-//            }
-//        });
-
         return view;
     }
+
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.my_trips:
+//                Log.d("tapped ", "my trips");
+//                return true;
+//            case R.id.create_trip:
+//                Log.d("tapped ", "create trips");
+//                return true;
+//            case R.id.join_trip:
+//                Log.d("tapped ", "join trips");
+//                return true;
+//            case R.id.my_information:
+//                Log.d("tapped ", "my information");
+//                return true;
+//            case R.id.logout:
+//                Log.d("tapped ", "logout");
+//                return true;
+//            default:
+//                // If we got here, the user's action was not recognized.
+//                // Invoke the superclass to handle it.
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//    }
 }
 
 

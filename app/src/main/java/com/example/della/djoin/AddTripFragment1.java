@@ -2,8 +2,6 @@ package com.example.della.djoin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,11 +26,7 @@ public class AddTripFragment1 extends Fragment {
     private EditText etDestination;
     private CheckBox cbRoundTrip;
     public static String createdBy;
-    private String tripId;
-
-    private DBHelper dbHelper;
-    private SQLiteDatabase db;
-    private Cursor cursor;
+    private String tripId;;
 
     // Error message
     private TextView tvLocationError;
@@ -52,21 +46,8 @@ public class AddTripFragment1 extends Fragment {
         etDestination = (EditText) view.findViewById(R.id.etDestination);
         cbRoundTrip = (CheckBox) view.findViewById(R.id.cbRoundTrip);
         createdBy = MainActivity.loggedInUser;
-        dbHelper = new DBHelper(getActivity());
 
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        db = dbHelper.getWritableDatabase();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        db.close();
     }
 
     Button.OnClickListener buttonFragOnClickListener = new Button.OnClickListener(){

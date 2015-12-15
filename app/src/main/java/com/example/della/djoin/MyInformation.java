@@ -1,56 +1,150 @@
 package com.example.della.djoin;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-public class MyInformation extends Activity implements View.OnClickListener{
-    private EditText etName;
-    private EditText etCarColor;
-    private EditText etCarMake;
-    private EditText etCarModel;
-    private Button btnSave;
+import java.util.List;
+
+public class MyInformation extends AppCompatActivity {
+
+    private TextView tvName;
+    private TextView tvCarColor;
+    private TextView tvCarMake;
+    private Button btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_information);
-        etName = (EditText) findViewById(R.id.etName);
-        etCarColor = (EditText) findViewById(R.id.etCarColor);
-        etCarMake = (EditText) findViewById(R.id.etCarMake);
-        etCarModel = (EditText) findViewById(R.id.etCarModel);
-        btnSave = (Button) findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(this);
-    }
-    
-    @Override
-    public void onClick(View v) {
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        currentUser.put("name", etName.getText().toString());
-        currentUser.put("carColor", etCarColor.getText().toString());
-        currentUser.put("carMake", etCarMake.getText().toString());
-        currentUser.put("carModel", etCarModel.getText().toString());
-        currentUser.saveInBackground(new SaveCallback() {
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvCarColor = (TextView) findViewById(R.id.tvCarColor);
+        tvCarMake = (TextView) findViewById(R.id.tvCarMake);
+        btnEdit = (Button) findViewById(R.id.btnEdit);
+
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("username", MainActivity.loggedInUser);
+        query.findInBackground(new FindCallback<ParseUser>() {
             @Override
-            public void done(ParseException e) {
-                    if (e == null) {
-                        // Save was successful!
-                        Toast.makeText(getApplicationContext(), "Information saved!", Toast.LENGTH_LONG).show();
-                    } else {
-                        // Save failed.
-                        Toast.makeText(getApplicationContext(), "Information not saved. Please try again.", Toast.LENGTH_LONG).show();
-
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e == null) {
+                    for (int i = 0; i < objects.size(); i++) {
+                        ParseUser result = objects.get(i);
+                        String name = result.getString("name");
+                        String carColor = result.getString("carColor");
+                        String carMake = result.getString("carMake");
+                        tvName.setText(name);
+                        tvCarColor.setText(carColor);
+                        tvCarMake.setText(carMake);
                     }
-
+                } else {
+                    // Error
+                }
             }
         });
 
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyInformation.this, EditInformation.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_my_information, menu);
+//        return true;
+//    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem myTrips = menu.findItem(R.id.my_trips);
+        myTrips.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(MyInformation.this, MyTrips.class);
+                        startActivity(intent);
+                        finish();
+                        return false;
+                    }
+                });
+        MenuItem addTrip = menu.findItem(R.id.add_trip);
+        addTrip.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(MyInformation.this, AddTrip.class);
+                        startActivity(intent);
+                        finish();
+                        return false;
+                    }
+                });
+        MenuItem findTrips = menu.findItem(R.id.find_trips);
+        findTrips.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(MyInformation.this, SearchTrips.class);
+                        startActivity(intent);
+                        finish();
+                        return false;
+                    }
+                });
+        MenuItem myInformation = menu.findItem(R.id.my_information);
+        myInformation.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Intent intent = new Intent(MyInformation.this, MyInformation.class);
+                        startActivity(intent);
+                        finish();
+                        return false;
+                    }
+                });
+        MenuItem logout = menu.findItem(R.id.logout);
+        logout.setOnMenuItemClickListener(
+                new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        ParseUser.getCurrentUser().logOutInBackground();
+                        Intent intent = new Intent(MyInformation.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        getApplicationContext().startActivity(intent);
+                        finish();
+                        return false;
+                    }
+                });
+        return true;
     }
 }

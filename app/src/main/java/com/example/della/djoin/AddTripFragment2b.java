@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,8 +33,6 @@ public class AddTripFragment2b extends Fragment {
     private EditText etReturnTime;
     private Calendar cal;
     private CheckBox cbSameAsDepart;
-    private DBHelper dbHelper;
-    private SQLiteDatabase db;
     boolean isChecked;
 
 
@@ -57,7 +54,6 @@ public class AddTripFragment2b extends Fragment {
         etReturnDate = (EditText) view.findViewById(R.id.etReturnDate);
         cbSameAsDepart = (CheckBox) view.findViewById(R.id.cbSameAsDepart);
         cbSameAsDepart.setOnCheckedChangeListener(myCheckedListener);
-        dbHelper = new DBHelper(getActivity());
 
         etReturnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,10 +128,8 @@ public class AddTripFragment2b extends Fragment {
                     } else { // All inputs are valid.
                         // Create new transaction
                         FragmentTransaction trans = getFragmentManager().beginTransaction();
-                        AddTripFragment1.trips.put("departureDate", etDepartureDate.getText().toString());
-                        AddTripFragment1.trips.put("departureTime", etDepartureTime.getText().toString());
-                        AddTripFragment1.trips.put("returnDate", etReturnDate.getText().toString());
-                        AddTripFragment1.trips.put("returnTime", etReturnTime.getText().toString());
+                        AddTripFragment1.trips.put("departureDateAndTime", departureDateAsDate);
+                        AddTripFragment1.trips.put("returnDateAndTime", returnDateAsDate);
                         nextFrag = new AddTripFragment3();
 
                         // Replace whatever is in the fragment container view with this fragment
@@ -150,19 +144,6 @@ public class AddTripFragment2b extends Fragment {
             }
         }
     };
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        db = dbHelper.getWritableDatabase();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        db.close();
-    }
 
     private void showTimePicker(EditText et) {
         TimePickerFragment time = new TimePickerFragment();

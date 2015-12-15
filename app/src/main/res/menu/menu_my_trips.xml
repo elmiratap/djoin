@@ -1,5 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="com.example.della.djoin.MyTrips">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.della.djoin.MyTrips">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/my_trips"
+        android:title="My Trips"
+        app:showAsAction="never"/>
+    <item android:id="@+id/add_trip"
+        android:title="Add Trip"
+        app:showAsAction="never"/>
+    <item android:id="@+id/find_trips"
+        android:title="Find Trips"
+        app:showAsAction="never"/>
+    <item android:id="@+id/my_information"
+        android:title="My Information"
+        app:showAsAction="never"/>
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="never"/>
 </menu>
