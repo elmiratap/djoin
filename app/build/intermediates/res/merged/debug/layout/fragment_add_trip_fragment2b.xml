@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:id="@+id/aTFrag2b"
+    tools:context="com.example.della.djoin.AddTripFragment2b">
+
+    <EditText
+        android:id="@+id/etDepartureDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Departure Date"
+        android:focusable="false"
+        />
+    <EditText
+        android:id="@+id/etDepartureTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Departure Time"
+        android:focusable="false"
+        />
+    <EditText
+        android:id="@+id/etReturnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Return Date"
+        android:focusable="false"
+        />
+    <CheckBox
+        android:id="@+id/cbSameAsDepart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Same as departure date"/>
+
+    <EditText
+        android:id="@+id/etReturnTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Return Time"
+        android:focusable="false"
+        />
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"/>
+
+</LinearLayout>
+<!-- From: file:/C:/Users/elmira/djoin/app/src/main/res/layout/fragment_add_trip_fragment2b.xml -->
