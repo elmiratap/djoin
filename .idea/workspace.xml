@@ -81,7 +81,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.57591623">
+            <state vertical-scroll-proportion="0.6122449">
               <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding>
                 <element signature="e#413#431#0" expanded="true" />
@@ -2031,7 +2031,7 @@
         <state vertical-scroll-proportion="-12.294118">
           <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
           <folding>
-            <element signature="e#647#682#0" expanded="true" />
+            <element signature="e#647#682#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2246,12 +2246,12 @@
         <state vertical-scroll-proportion="4.061856">
           <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#7186#7434#0" expanded="true" />
-            <element signature="e#7433#7434#0" expanded="true" />
-            <element signature="e#7486#7731#0" expanded="true" />
-            <element signature="e#7730#7731#0" expanded="true" />
-            <element signature="e#8630#8947#0" expanded="true" />
-            <element signature="e#8946#8947#0" expanded="true" />
+            <element signature="e#7186#7434#0" expanded="false" />
+            <element signature="e#7433#7434#0" expanded="false" />
+            <element signature="e#7486#7731#0" expanded="false" />
+            <element signature="e#7730#7731#0" expanded="false" />
+            <element signature="e#8630#8947#0" expanded="false" />
+            <element signature="e#8946#8947#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2275,8 +2275,8 @@
         <state vertical-scroll-proportion="0.22680412">
           <caret line="141" column="52" selection-start-line="141" selection-start-column="52" selection-end-line="141" selection-end-column="52" />
           <folding>
-            <element signature="e#3053#3300#0" expanded="true" />
-            <element signature="e#3299#3300#0" expanded="true" />
+            <element signature="e#3053#3300#0" expanded="false" />
+            <element signature="e#3299#3300#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2473,7 +2473,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57591623">
+        <state vertical-scroll-proportion="0.6122449">
           <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding>
             <element signature="e#413#431#0" expanded="true" />
