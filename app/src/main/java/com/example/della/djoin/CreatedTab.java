@@ -52,6 +52,12 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
 
         c = getActivity();
         lvCreatedTrips = (ListView) view.findViewById(R.id.lvCreatedTrips);
+//        lvCreatedTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                CreatedTripsListAdapter.tvStartLocation.setVisibility(View.VISIBLE);
+//            }
+//        });
         lvCreatedTrips.setAdapter(adapter);
         //lvCreatedTrips.setAdapter(new CreatedTripsListAdapter(c, R.layout.list_view, createdTripList));
 
@@ -73,7 +79,10 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                         int numSeats = result.getInt("availableSeats");
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
                         String id = result.getObjectId();
-                        adapter.add(new CreatedTripList(destination, numSeats, date, id));
+                        String start = "Start location: " + String.valueOf(result.getString("startLocation"));
+                        String driver = "Driver " + String.valueOf(result.getString("createdBy"));
+                        String car = "Car: " + String.valueOf(result.getString("carColor")) + " " + String.valueOf(result.getString("carMake"));
+                        adapter.add(new CreatedTripList(destination, numSeats, date, id, start, driver, car));
                     }
 
 

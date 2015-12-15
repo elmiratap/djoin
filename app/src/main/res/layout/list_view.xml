@@ -33,33 +33,44 @@
         android:text="Today 6:00PM"
         android:textSize="15dp"/>
     <TextView
-        android:id="@+id/return_time"
+        android:id="@+id/tvReturnTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:layout_above="@+id/tvStartLocation"
+        android:layout_below="@+id/tvSeats"
+        android:layout_marginTop="5dp"
         />
     <TextView
-        android:id="@+id/start_location"
+        android:id="@+id/tvStartLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvSeats"
         android:visibility="gone"
         />
     <TextView
-        android:id="@+id/driver"
+        android:id="@+id/tvDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvStartLocation"
+        android:layout_marginTop="5dp"
         android:visibility="gone"
         />
     <TextView
-        android:id="@+id/car"
+        android:id="@+id/tvCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvDriver"
         android:visibility="gone"
         />
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/tvCar"
         android:visibility="gone"
         />
     <TextView

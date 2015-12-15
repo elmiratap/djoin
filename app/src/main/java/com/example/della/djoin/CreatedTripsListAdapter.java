@@ -18,9 +18,6 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 /**
@@ -61,15 +58,21 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
         tvSeats.setText(tripList.getNumSeats() + " seats left");
+        TextView tvStartLocation = (TextView) itemView.findViewById(R.id.tvStartLocation);
+        tvStartLocation.setText(tripList.getStart());
+        TextView tvDriver = (TextView) itemView.findViewById(R.id.tvDriver);
+        tvDriver.setText(tripList.getDriver());
+        TextView tvCar = (TextView) itemView.findViewById(R.id.tvCar);
+        tvCar.setText(tripList.getCar());
+        tvStartLocation.setVisibility(View.VISIBLE);
+        tvCar.setVisibility(View.VISIBLE);
+        tvDriver.setVisibility(View.VISIBLE);
 
         btnCancel = (Button) itemView.findViewById(R.id.btnCancel);
         btnCancel.setVisibility(View.VISIBLE);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // view saved for access from inner loops
-                final CountDownLatch mCountDownLatch = new CountDownLatch(2);
-                final ExecutorService executor = Executors.newFixedThreadPool(2); // 2 Threads in pool
 
                 final View view = v;
                 AlertDialog.Builder cancelDialogBuilder = new AlertDialog.Builder(context);
