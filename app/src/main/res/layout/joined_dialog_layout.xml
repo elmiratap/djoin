@@ -8,18 +8,19 @@
         android:id="@+id/tvJoinMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You just join the trip to"/>
+        android:text="You just joined the trip to"/>
 
     <TextView
         android:id="@+id/tvTripDestination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="15pt"/>
+        android:textSize="10pt"/>
 
     <TextView
         android:id="@+id/tvDateTime"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="10pt"/>
 
     <!--<Button-->
         <!--android:id="@+id/btnBack"-->

@@ -1749,8 +1749,8 @@ containing a value of this type.
         public static final int tvCarColor=0x7f0c0064;
         public static final int tvCarMake=0x7f0c0065;
         public static final int tvDateTime=0x7f0c0085;
-        public static final int tvDescription=0x7f0c008d;
         public static final int tvDestination=0x7f0c0086;
+        public static final int tvDetails=0x7f0c008d;
         public static final int tvDriver=0x7f0c008b;
         public static final int tvJoinMessage=0x7f0c0083;
         public static final int tvName=0x7f0c0063;

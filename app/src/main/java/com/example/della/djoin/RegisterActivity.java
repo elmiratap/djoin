@@ -2,8 +2,6 @@ package com.example.della.djoin;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,21 +29,13 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     // Button to complete registration
     private Button btnRegister;
 
-    private String[] userColumns;
     public static ParseUser user;
 
-
-    DBHelper dbHelper;
-    SQLiteDatabase db;
-    Cursor cursor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userColumns = new String[] {dbHelper.USERNAME, dbHelper.PASSWORD, dbHelper.NAME,
-                dbHelper.USER_CAR_MAKE, dbHelper.USER_CAR_MODEL, dbHelper.USER_CAR_COLOR};
-
         // initializes all views from the activity_register xml file
         setContentView(R.layout.activity_register);
 
@@ -56,8 +46,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this);
 
-        dbHelper = new DBHelper(this);
-
         tvRegisterError.setVisibility(View.GONE);
 
     }
@@ -65,14 +53,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        db = dbHelper.getWritableDatabase();
-        cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        db.close();
     }
 
     @Override

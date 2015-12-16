@@ -3,7 +3,6 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +23,6 @@ import java.util.Date;
 import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link JoinedTab.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link JoinedTab#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class JoinedTab extends android.support.v4.app.Fragment {
     private TextView tvNoJoinedTrips;
     private List<JoinTripsList> joinTripsList;
@@ -90,14 +81,34 @@ public class JoinedTab extends android.support.v4.app.Fragment {
                         int numSeats = result.getInt("availableSeats");
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
                         String id = result.getObjectId();
-
+                        String start = "Start location: " + String.valueOf(result.getString("startLocation"));
+                        String driver = "Driver: " + String.valueOf(result.getString("createdBy"));
+                        String car = "Car: " + String.valueOf(result.getString("carColor")) + " " + String.valueOf(result.getString("carMake"));
+                        String returnTime = "Return time: " + String.valueOf(result.getDate("returnDateAndTime"));
+                        String details = String.valueOf(result.getString("details"));
+                        if (result.getBoolean("roundTripBool")) {
+                            if (details != null) {
+                                Log.d(returnTime, details);
+                                adapter.add(new JoinTripsList(destination, numSeats, date, id, returnTime, start, driver, car, details));
+                            } else {
+                                Log.d(returnTime, "N/A");
+                                adapter.add(new JoinTripsList(destination, date, numSeats, id, returnTime, start, driver, car));
+                            }
+                        } else {
+                            Log.d("in the else", "yess");
+                            if (details != null) {
+                                Log.d("one way trip", details);
+                                adapter.add(new JoinTripsList(destination, numSeats, date, id, start, driver, car, details));
+                            } else {
+                                Log.d("one way trip", "N/A");
+                                adapter.add(new JoinTripsList(destination, numSeats, date, id, start, driver, car));
+                            }
+                        }
                         Log.d("dest ", destination);
                         Log.d("seats ", String.valueOf(numSeats));
                         Log.d("date ", date);
                         Log.d("iddd ", id);
 
-
-                        adapter.add(new JoinTripsList(destination, numSeats, date, id));
                     }
                 } else { // TODO this does not show up, fix it
                 }

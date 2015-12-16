@@ -29,7 +29,6 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
     private Context context;
     private List<SearchTripsList> trips;
     private Button btnJoin;
-    private TextView tvTripId;
     public static ParseObject takes;
 
     public SearchTripsListAdapter(Context c, int resourceId, List<SearchTripsList> trips) {
@@ -58,6 +57,40 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
         tvSeats.setText(tripList.getNumSeats() + " seats left");
         itemView.findViewById(R.id.btnCancel).setVisibility(View.INVISIBLE);
+        TextView tvStartLocation = (TextView) itemView.findViewById(R.id.tvStartLocation);
+        tvStartLocation.setText(tripList.getStart());
+        TextView tvDriver = (TextView) itemView.findViewById(R.id.tvDriver);
+        tvDriver.setText(tripList.getDriver());
+        TextView tvCar = (TextView) itemView.findViewById(R.id.tvCar);
+        tvCar.setText(tripList.getCar());
+        final TextView tvReturnTime = (TextView) itemView.findViewById(R.id.tvReturnTime);
+
+        ParseQuery<ParseObject> roundTrip = new ParseQuery<ParseObject>("Trips");
+        roundTrip.whereEqualTo("objectId", tvTripId.getText());
+        roundTrip.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (int i = 0; i < objects.size(); i++) {
+                    ParseObject result = objects.get(i);
+                    if (result.getBoolean("roundTripBool")) {
+                        Log.d("return time", "this exists");
+                        tvReturnTime.setText(tripList.getReturnTime());
+                        tvReturnTime.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.d("there is no return", "from school");
+                    }
+                }
+            }
+        });
+
+        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
+        if (tripList.getDetails() != null) {
+            tvDetails.setText(tripList.getDetails());
+            tvDetails.setVisibility(View.VISIBLE);
+        }
+        tvStartLocation.setVisibility(View.VISIBLE);
+        tvCar.setVisibility(View.VISIBLE);
+        tvDriver.setVisibility(View.VISIBLE);
         btnJoin = (Button) itemView.findViewById(R.id.btnJoin);
         btnJoin.setVisibility(View.VISIBLE);
         btnJoin.setOnClickListener(new View.OnClickListener() {

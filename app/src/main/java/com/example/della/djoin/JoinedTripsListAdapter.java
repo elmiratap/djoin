@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -56,6 +58,40 @@ public class JoinedTripsListAdapter extends ArrayAdapter<JoinTripsList> {
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
         tvSeats.setText(tripList.getNumSeats() + " seats left");
+        TextView tvStartLocation = (TextView) itemView.findViewById(R.id.tvStartLocation);
+        tvStartLocation.setText(tripList.getStart());
+        TextView tvDriver = (TextView) itemView.findViewById(R.id.tvDriver);
+        tvDriver.setText(tripList.getDriver());
+        TextView tvCar = (TextView) itemView.findViewById(R.id.tvCar);
+        tvCar.setText(tripList.getCar());
+        final TextView tvReturnTime = (TextView) itemView.findViewById(R.id.tvReturnTime);
+
+        ParseQuery<ParseObject> roundTrip = new ParseQuery<ParseObject>("Trips");
+        roundTrip.whereEqualTo("objectId", tvTripId.getText());
+        roundTrip.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                for (int i = 0; i < objects.size(); i++) {
+                    ParseObject result = objects.get(i);
+                    if (result.getBoolean("roundTripBool")) {
+                        Log.d("return time", "this exists");
+                        tvReturnTime.setText(tripList.getReturnTime());
+                        tvReturnTime.setVisibility(View.VISIBLE);
+                    } else {
+                        Log.d("there is no return", "from school");
+                    }
+                }
+            }
+        });
+
+        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
+        if (tripList.getDetails() != null) {
+            tvDetails.setText(tripList.getDetails());
+            tvDetails.setVisibility(View.VISIBLE);
+        }
+        tvStartLocation.setVisibility(View.VISIBLE);
+        tvCar.setVisibility(View.VISIBLE);
+        tvDriver.setVisibility(View.VISIBLE);
         btnLeave = (Button) itemView.findViewById(R.id.btnLeave);
         btnLeave.setVisibility(View.VISIBLE);
         btnLeave.setOnClickListener(new View.OnClickListener() {

@@ -12,9 +12,10 @@ public class CreatedTripList {
     private String start;
     private String driver;
     private String car;
-    private String description;
+    private String details;
 
-    public CreatedTripList(String destination, int numSeats, String date, String id,
+    // one way trip without details
+    public CreatedTripList(String destination, String date, int numSeats, String id,
                            String start, String driver, String car) {
         super();
         this.destination = destination;
@@ -22,11 +23,55 @@ public class CreatedTripList {
         this.date = date;
         this.id = id;
         this.start = start;
-
         this.driver = driver;
         this.car = car;
 
     }
+
+    // round trip with details
+    public CreatedTripList(String destination, int numSeats, String date, String id,
+                           String returnTime, String start, String driver, String car, String details) {
+        super();
+        this.destination = destination;
+        this.numSeats = numSeats;
+        this.date = date;
+        this.id = id;
+        this.returnTime = returnTime;
+        this.start = start;
+        this.driver = driver;
+        this.car = car;
+        this.details = details;
+    }
+
+    // one way trip with details
+    public CreatedTripList(String destination, int numSeats, String date, String id,
+                           String start, String driver, String car, String details) {
+        super();
+        this.destination = destination;
+        this.numSeats = numSeats;
+        this.date = date;
+        this.id = id;
+        this.start = start;
+        this.driver = driver;
+        this.car = car;
+        this.details = details;
+
+    }
+
+    // roundtrip without details
+    public CreatedTripList(String destination, String date, int numSeats, String id,
+                                String returnTime, String start, String driver, String car) {
+        super();
+        this.destination = destination;
+        this.numSeats = numSeats;
+        this.date = date;
+        this.id = id;
+        this.returnTime = returnTime;
+        this.start = start;
+        this.driver = driver;
+        this.car = car;
+    }
+
 
     public String getDestination() {
         return destination;
@@ -72,6 +117,14 @@ public class CreatedTripList {
         return driver;
     }
 
+    public String getReturnTime() {
+        return returnTime;
+    }
+
+    public void setReturnTime(String returnTime) {
+        this.returnTime = returnTime;
+    }
+
     public void setDriver(String driver) {
         this.driver = driver;
     }
@@ -84,4 +137,11 @@ public class CreatedTripList {
         this.car = car;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }

@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLogin.setOnClickListener(this);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         loginError = (TextView) findViewById(R.id.loginError);
-//        dbHelper = new DBHelper(this);
         loginError.setVisibility(View.GONE);
     }
 

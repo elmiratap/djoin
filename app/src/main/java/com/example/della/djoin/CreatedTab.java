@@ -3,6 +3,7 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,11 +81,30 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
                         String id = result.getObjectId();
                         String start = "Start location: " + String.valueOf(result.getString("startLocation"));
-                        String driver = "Driver " + String.valueOf(result.getString("createdBy"));
+                        String driver = "Driver: " + String.valueOf(result.getString("createdBy"));
                         String car = "Car: " + String.valueOf(result.getString("carColor")) + " " + String.valueOf(result.getString("carMake"));
-                        adapter.add(new CreatedTripList(destination, numSeats, date, id, start, driver, car));
-                    }
+                        String returnTime = "Return time: " + String.valueOf(result.getDate("returnDateAndTime"));
+                        String details = String.valueOf(result.getString("details"));
+                        if (result.getBoolean("roundTripBool")) {
+                            if (details != null) {
+                                Log.d(returnTime, details);
+                                adapter.add(new CreatedTripList(destination, numSeats, date, id, returnTime, start, driver, car, details));
+                            } else {
+                                Log.d(returnTime, "N/A");
+                                adapter.add(new CreatedTripList(destination, date, numSeats, id, returnTime, start, driver, car));
+                            }
+                        } else {
+                            Log.d("in the else", "yess");
+                            if (details != null) {
+                                Log.d("one way trip", details);
+                                adapter.add(new CreatedTripList(destination, numSeats, date, id, start, driver, car, details));
+                            } else {
+                                Log.d("one way trip", "N/A");
+                                adapter.add(new CreatedTripList(destination, date, numSeats, id, start, driver, car));
+                            }
+                        }
 
+                    }
 
                 } else { // TODO this does not show up, fix it
                     // If there are no results, display appropriate message.

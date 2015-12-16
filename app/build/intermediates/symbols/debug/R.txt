@@ -595,8 +595,8 @@ int id tvCar 0x7f0c008c
 int id tvCarColor 0x7f0c0064
 int id tvCarMake 0x7f0c0065
 int id tvDateTime 0x7f0c0085
-int id tvDescription 0x7f0c008d
 int id tvDestination 0x7f0c0086
+int id tvDetails 0x7f0c008d
 int id tvDriver 0x7f0c008b
 int id tvJoinMessage 0x7f0c0083
 int id tvName 0x7f0c0063
