@@ -90,7 +90,7 @@ public class AddTrip extends Activity {
                 new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        ParseUser.getCurrentUser().logOutInBackground();
+                        ParseUser.logOutInBackground();
                         Intent intent = new Intent(AddTrip.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getApplicationContext().startActivity(intent);

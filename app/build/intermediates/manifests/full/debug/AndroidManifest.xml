@@ -28,27 +28,27 @@
         </activity>
         <activity
             android:name="com.example.della.djoin.Register"
-            android:label="@string/title_activity_register_activity" >
+            android:label="Register" >
         </activity>
         <activity
             android:name="com.example.della.djoin.AddTrip"
-            android:label="@string/title_activity_add_trip" >
+            android:label="Add Trip" >
         </activity>
         <activity
             android:name="com.example.della.djoin.MyTrips"
-            android:label="@string/title_activity_my_trips" >
+            android:label="My Trips" >
         </activity>
         <activity
             android:name="com.example.della.djoin.MyInformation"
-            android:label="@string/title_activity_my_information" >
+            android:label="My Information" >
         </activity>
         <activity
             android:name="com.example.della.djoin.EditInformation"
-            android:label="EditInformation" >
+            android:label="Edit Information" >
         </activity>
         <activity
             android:name="com.example.della.djoin.SearchTrips"
-            android:label="@string/title_activity_join_trip" >
+            android:label="Search Trips" >
         </activity>
     </application>
 

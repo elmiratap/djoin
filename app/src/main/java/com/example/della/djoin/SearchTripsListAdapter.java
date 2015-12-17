@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +54,7 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
         TextView tvTripDateTime = (TextView) itemView.findViewById(R.id.tvTripDateTime);
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
-        tvSeats.setText(tripList.getNumSeats() + " seats left");
+        tvSeats.setText(tripList.getNumSeats() + " seat(s) left");
         itemView.findViewById(R.id.btnCancel).setVisibility(View.INVISIBLE);
         TextView tvStartLocation = (TextView) itemView.findViewById(R.id.tvStartLocation);
         tvStartLocation.setText(tripList.getStart());
@@ -73,21 +72,21 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
                 for (int i = 0; i < objects.size(); i++) {
                     ParseObject result = objects.get(i);
                     if (result.getBoolean("roundTripBool")) {
-                        Log.d("return time", "this exists");
                         tvReturnTime.setText(tripList.getReturnTime());
                         tvReturnTime.setVisibility(View.VISIBLE);
-                    } else {
-                        Log.d("there is no return", "from school");
+
+                        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
+                        //tvDetails.setText("Placeholder text");
+                        // Check if the trip has details and display them if it does.
+                        if (!tvDetails.getText().toString().equals("null")) {
+                            tvDetails.setText(tripList.getDetails());
+                            tvDetails.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
         });
 
-        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
-        if (tripList.getDetails() != null) {
-            tvDetails.setText(tripList.getDetails());
-            tvDetails.setVisibility(View.VISIBLE);
-        }
         tvStartLocation.setVisibility(View.VISIBLE);
         tvCar.setVisibility(View.VISIBLE);
         tvDriver.setVisibility(View.VISIBLE);
@@ -113,22 +112,19 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
                             takes.put("username", MainActivity.loggedInUser);
                             takes.saveInBackground();
 
-                        } else {
-                            Log.d("you weren't added", "you can't go");
                         }
-
                     }
                 });
+
                 AlertDialog.Builder joinedDialogBuilder = new AlertDialog.Builder(context);
                 joinedDialogBuilder
-                        .setView(R.layout.joined_dialog_layout)
+                        .setTitle("You have successfully joined the trip")
                         // Go to the My Trips screen.
                         .setPositiveButton("See My Trips", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(context, MyTrips.class);
                                 context.startActivity(intent);
-                                // TODO need finish here?
                             }
                         })
 
@@ -136,8 +132,6 @@ public class SearchTripsListAdapter extends ArrayAdapter<SearchTripsList> {
                         .setNegativeButton("Go back", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // Remove the trip the user just joined from the list.
-                                remove(getItem(position));
                                 dialog.cancel();
                             }
                         });

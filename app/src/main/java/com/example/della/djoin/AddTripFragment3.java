@@ -68,7 +68,6 @@ public class AddTripFragment3 extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if(isChecked) {
-                Log.d("check box", "is checked");
                 ParseQuery<ParseUser> query = ParseUser.getQuery();
                 query.whereEqualTo("username", MainActivity.loggedInUser);
                 query.findInBackground(new FindCallback<ParseUser>() {
@@ -82,8 +81,6 @@ public class AddTripFragment3 extends Fragment {
                                 etCarColor.setText(carColor);
                                 etCarMake.setText(carMake);
                             }
-                        } else {
-                            // Error
                         }
                     }
                 });
@@ -101,17 +98,21 @@ public class AddTripFragment3 extends Fragment {
                 } else {
                     // Add all information to the database and switch to the MyTrips screen.
                     Intent intent = new Intent(getActivity(), MyTrips.class);
-                    AddTripFragment1.trips.put("availableSeats", Integer.parseInt(etAvailableSeats.getText().toString()));
-                    AddTripFragment1.trips.put("carMake", etCarMake.getText().toString());
-                    AddTripFragment1.trips.put("carColor", etCarColor.getText().toString());
-                    AddTripFragment1.trips.put("details", etDetails.getText().toString());
+                    if(Integer.parseInt(etAvailableSeats.getText().toString()) > 0) {
+                        AddTripFragment1.trips.put("availableSeats", Integer.parseInt(etAvailableSeats.getText().toString()));
+                        AddTripFragment1.trips.put("carMake", etCarMake.getText().toString());
+                        AddTripFragment1.trips.put("carColor", etCarColor.getText().toString());
+                        AddTripFragment1.trips.put("details", etDetails.getText().toString());
 
-                    // Persist information from all steps to the database.
-                    // Do not persist if the user has not gone through all the steps.
-                    AddTripFragment1.trips.saveInBackground();
+                        // Persist information from all steps to the database.
+                        // Do not persist if the user has not gone through all the steps.
+                        AddTripFragment1.trips.saveInBackground();
 
-                    startActivity(intent);
-                    getActivity().finish();
+                        startActivity(intent);
+                        getActivity().finish();
+                    } else {
+                        Toast.makeText(getActivity(), "Please enter at least one available seat.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }

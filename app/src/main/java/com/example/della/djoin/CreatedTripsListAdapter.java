@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,6 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
     private Context context;
     private List<CreatedTripList> trips;
     private Button btnCancel;
-    private TextView tvTripId;
 
     public CreatedTripsListAdapter(Context c, int resourceId, List<CreatedTripList> trips) {
         super(c, resourceId, trips);
@@ -59,7 +57,7 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
         TextView tvTripDateTime = (TextView) itemView.findViewById(R.id.tvTripDateTime);
         tvTripDateTime.setText(tripList.getDate());
         TextView tvSeats = (TextView) itemView.findViewById(R.id.tvSeats);
-        tvSeats.setText(tripList.getNumSeats() + " seats left");
+        tvSeats.setText(tripList.getNumSeats() + " seat(s) left");
         TextView tvStartLocation = (TextView) itemView.findViewById(R.id.tvStartLocation);
         tvStartLocation.setText(tripList.getStart());
         TextView tvDriver = (TextView) itemView.findViewById(R.id.tvDriver);
@@ -76,21 +74,21 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                 for (int i = 0; i < objects.size(); i++) {
                     ParseObject result = objects.get(i);
                     if (result.getBoolean("roundTripBool")) {
-                        Log.d("return time", "this exists");
                         tvReturnTime.setText(tripList.getReturnTime());
                         tvReturnTime.setVisibility(View.VISIBLE);
-                    } else {
-                        Log.d("there is no return", "from school");
+
+                        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
+
+                        ;// Check if the trip has details and display them if it does.
+                        if (!tvDetails.getText().toString().equals("null")) {
+                            tvDetails.setText(tripList.getDetails());
+                            tvDetails.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
             }
         });
 
-        TextView tvDetails = (TextView) itemView.findViewById(R.id.tvDetails);
-        if (tripList.getDetails() != null) {
-            tvDetails.setText(tripList.getDetails());
-            tvDetails.setVisibility(View.VISIBLE);
-        }
         tvStartLocation.setVisibility(View.VISIBLE);
         tvCar.setVisibility(View.VISIBLE);
         tvDriver.setVisibility(View.VISIBLE);
@@ -117,14 +115,15 @@ public class CreatedTripsListAdapter extends ArrayAdapter<CreatedTripList> {
                                 final int taggedPosition = lv.getPositionForView(itemView);
                                 String tripId = tvTripId.getText().toString();
                                 String position = ""+taggedPosition;
-                                //use async task to delete objects on a background thread and
-                                //update ui when finished, much simpler than using locks
+
+                                // Use async task to delete objects on a background thread and
+                                // update ui when finished, much simpler than using locks.
                                 new DeleteTripAndRelatedTakes().execute(tripId, position);
 
                             }
                         })
 
-                                // when the user doesn't want to delete their trip
+                        // When the user doesn't want to delete their trip
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

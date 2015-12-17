@@ -3,7 +3,6 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,13 +69,9 @@ public class JoinedTab extends android.support.v4.app.Fragment {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    Log.d("num objects: ", String.valueOf(objects.size()));
                     ParseObject result;
                     for (int i = 0; i < objects.size(); i++) {
                         result = objects.get(i);
-
-                        Log.d("this is the id", result.getObjectId());
-
                         String destination = result.getString("destination");
                         int numSeats = result.getInt("availableSeats");
                         String date = String.valueOf(result.getDate("departureDateAndTime"));
@@ -87,30 +82,19 @@ public class JoinedTab extends android.support.v4.app.Fragment {
                         String returnTime = "Return time: " + String.valueOf(result.getDate("returnDateAndTime"));
                         String details = String.valueOf(result.getString("details"));
                         if (result.getBoolean("roundTripBool")) {
-                            if (details != null) {
-                                Log.d(returnTime, details);
+                            if (!details.equals("null")) {
                                 adapter.add(new JoinTripsList(destination, numSeats, date, id, returnTime, start, driver, car, details));
                             } else {
-                                Log.d(returnTime, "N/A");
                                 adapter.add(new JoinTripsList(destination, date, numSeats, id, returnTime, start, driver, car));
                             }
                         } else {
-                            Log.d("in the else", "yess");
-                            if (details != null) {
-                                Log.d("one way trip", details);
+                            if (!details.equals("null")) {
                                 adapter.add(new JoinTripsList(destination, numSeats, date, id, start, driver, car, details));
                             } else {
-                                Log.d("one way trip", "N/A");
                                 adapter.add(new JoinTripsList(destination, numSeats, date, id, start, driver, car));
                             }
                         }
-                        Log.d("dest ", destination);
-                        Log.d("seats ", String.valueOf(numSeats));
-                        Log.d("date ", date);
-                        Log.d("iddd ", id);
-
                     }
-                } else { // TODO this does not show up, fix it
                 }
             }
         });
@@ -125,10 +109,6 @@ public class JoinedTab extends android.support.v4.app.Fragment {
                 getActivity().finish();
             }
         });
-
         return view;
     }
-
-
-
 }

@@ -3,7 +3,6 @@ package com.example.della.djoin;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,12 +38,10 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        final String ARG_OBJECT = "object";
         // The last two arguments ensure LayoutParams are inflated
         // properly.
         View view =  inflater.inflate(R.layout.fragment_created_tab, container, false);
 
-//        setHasOptionsMenu(true);
         tvNoCreatedTrips = (TextView)view.findViewById(R.id.tvNoCreatedTrips);
         tvNoCreatedTrips.setVisibility(View.INVISIBLE);
 
@@ -53,14 +50,7 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
 
         c = getActivity();
         lvCreatedTrips = (ListView) view.findViewById(R.id.lvCreatedTrips);
-//        lvCreatedTrips.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                CreatedTripsListAdapter.tvStartLocation.setVisibility(View.VISIBLE);
-//            }
-//        });
         lvCreatedTrips.setAdapter(adapter);
-        //lvCreatedTrips.setAdapter(new CreatedTripsListAdapter(c, R.layout.list_view, createdTripList));
 
         // Only show trips that are in the future and created by the logged in user.
         Calendar c = Calendar.getInstance();
@@ -86,29 +76,21 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
                         String returnTime = "Return time: " + String.valueOf(result.getDate("returnDateAndTime"));
                         String details = String.valueOf(result.getString("details"));
                         if (result.getBoolean("roundTripBool")) {
-                            if (details != null) {
-                                Log.d(returnTime, details);
+                            if (!details.equals("null")) {
                                 adapter.add(new CreatedTripList(destination, numSeats, date, id, returnTime, start, driver, car, details));
                             } else {
-                                Log.d(returnTime, "N/A");
                                 adapter.add(new CreatedTripList(destination, date, numSeats, id, returnTime, start, driver, car));
                             }
                         } else {
-                            Log.d("in the else", "yess");
-                            if (details != null) {
-                                Log.d("one way trip", details);
+                            if (!details.equals("null")) {
                                 adapter.add(new CreatedTripList(destination, numSeats, date, id, start, driver, car, details));
                             } else {
-                                Log.d("one way trip", "N/A");
                                 adapter.add(new CreatedTripList(destination, date, numSeats, id, start, driver, car));
                             }
                         }
 
                     }
 
-                } else { // TODO this does not show up, fix it
-                    // If there are no results, display appropriate message.
-                    tvNoCreatedTrips.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -124,37 +106,6 @@ public class CreatedTab extends android.support.v4.app.Fragment  {
         });
         return view;
     }
-
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.my_trips:
-//                Log.d("tapped ", "my trips");
-//                return true;
-//            case R.id.create_trip:
-//                Log.d("tapped ", "create trips");
-//                return true;
-//            case R.id.join_trip:
-//                Log.d("tapped ", "join trips");
-//                return true;
-//            case R.id.my_information:
-//                Log.d("tapped ", "my information");
-//                return true;
-//            case R.id.logout:
-//                Log.d("tapped ", "logout");
-//                return true;
-//            default:
-//                // If we got here, the user's action was not recognized.
-//                // Invoke the superclass to handle it.
-//                return super.onOptionsItemSelected(item);
-//
-//        }
-//    }
 }
 
 

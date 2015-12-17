@@ -32,8 +32,6 @@ public class MyTrips extends AppCompatActivity {
         tabs.setDistributeEvenly(true);
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
-        //TODO check up on how to define a context
-        //http://www.android4devs.com/2015/01/how-to-make-material-design-sliding-tabs.html
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
@@ -43,12 +41,6 @@ public class MyTrips extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
-//
-//        myTripsPagerAdapter =
-//                new TripsPagerAdapter(
-//                        getSupportFragmentManager());
-//        mViewPager = (ViewPager) findViewById(R.id.pager);
-//        mViewPager.setAdapter(myTripsPagerAdapter);
 
     }
     @Override

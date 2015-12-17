@@ -12,10 +12,6 @@ public class User {
     private String car_model;
     private String car_color;
 
-    public User() {
-
-    }
-
     public User(String username, String password, String name, String car_make,
                 String car_model, String car_color) {
         this.username = username;

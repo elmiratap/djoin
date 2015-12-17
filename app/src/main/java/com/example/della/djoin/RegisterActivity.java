@@ -3,8 +3,6 @@ package com.example.della.djoin;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,9 +13,6 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
-
-    // Title at the top of the page
-    private TextView tvTitle;
 
     // Error message
     private TextView tvRegisterError;
@@ -38,14 +33,11 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         // initializes all views from the activity_register xml file
         setContentView(R.layout.activity_register);
-
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvRegisterError = (TextView) findViewById(R.id.tvRegisterError);
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this);
-
         tvRegisterError.setVisibility(View.GONE);
 
     }
@@ -83,27 +75,5 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             });
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_register_activty, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

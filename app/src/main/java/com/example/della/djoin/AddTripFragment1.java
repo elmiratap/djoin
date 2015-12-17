@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseObject;
@@ -20,16 +19,11 @@ import com.parse.ParseObject;
 public class AddTripFragment1 extends Fragment {
 
     private View view;
-    private Fragment addTripFragment2a;
     private Button nextButton;
     private EditText etStartLocation;
     private EditText etDestination;
     private CheckBox cbRoundTrip;
     public static String createdBy;
-    private String tripId;;
-
-    // Error message
-    private TextView tvLocationError;
     public static ParseObject trips;
 
     public AddTripFragment1() {

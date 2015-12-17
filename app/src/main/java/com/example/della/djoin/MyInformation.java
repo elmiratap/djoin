@@ -18,7 +18,8 @@ import java.util.List;
 
 public class MyInformation extends AppCompatActivity {
 
-    private TextView tvName;
+    private TextView tvCarColorLabel;
+    private TextView tvCarMakeLabel;
     private TextView tvCarColor;
     private TextView tvCarMake;
     private Button btnEdit;
@@ -27,7 +28,6 @@ public class MyInformation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_information);
-        tvName = (TextView) findViewById(R.id.tvName);
         tvCarColor = (TextView) findViewById(R.id.tvCarColor);
         tvCarMake = (TextView) findViewById(R.id.tvCarMake);
         btnEdit = (Button) findViewById(R.id.btnEdit);
@@ -40,15 +40,13 @@ public class MyInformation extends AppCompatActivity {
                 if (e == null) {
                     for (int i = 0; i < objects.size(); i++) {
                         ParseUser result = objects.get(i);
-                        String name = result.getString("name");
                         String carColor = result.getString("carColor");
                         String carMake = result.getString("carMake");
-                        tvName.setText(name);
-                        tvCarColor.setText(carColor);
-                        tvCarMake.setText(carMake);
+                        tvCarMake.setText("Car make: " + carMake);
+                        tvCarColor.setText("Car color: " + carColor);
+                        tvCarMake.setVisibility(View.VISIBLE);
+                        tvCarColor.setVisibility(View.VISIBLE);
                     }
-                } else {
-                    // Error
                 }
             }
         });
@@ -63,27 +61,6 @@ public class MyInformation extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_my_information, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

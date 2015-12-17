@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        // Enable Local Datastore.
-//        Parse.enableLocalDatastore(this);
-//
-//        Parse.initialize(this, "2Cj7clB0aDfkYtjM3D8CovDduojXw6775Iz9cxP3", "lbEX2zvla4bT91sgq7uStIuDyY4aqcG7CsGFYYAA");
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -49,19 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, Register.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        db = dbHelper.getWritableDatabase();
-//        cursor = db.query(dbHelper.TABLE_USER, userColumns, null, null, null, null, null, null);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        db.close();
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.example.della.djoin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,7 +21,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 public class SearchTrips extends AppCompatActivity {
@@ -33,13 +31,11 @@ public class SearchTrips extends AppCompatActivity {
     private ArrayAdapter<SearchTripsList> adapter;
     private Button btnAddTrip;
     private Button btnSearch;
-    private HashSet searchResultHash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_trip);
-        searchResultHash = new HashSet();
 
         etSearch = (EditText) findViewById(R.id.etSearch);
         // When the user taps the search bar, delete the auto-populated list entries
@@ -88,9 +84,6 @@ public class SearchTrips extends AppCompatActivity {
                             ParseObject result;
                             for (int i = 0; i < objects.size(); i++) {
                                 result = objects.get(i);
-
-                                Log.d("this is the id", result.getObjectId());
-
                                 String destination = result.getString("destination");
                                 int numSeats = result.getInt("availableSeats");
                                 String date = String.valueOf(result.getDate("departureDateAndTime"));
@@ -102,25 +95,19 @@ public class SearchTrips extends AppCompatActivity {
                                 String details = String.valueOf(result.getString("details"));
                                 if (result.getBoolean("roundTripBool")) {
                                     if (details != null) {
-                                        Log.d(returnTime, details);
                                         adapter.add(new SearchTripsList(destination, numSeats, date, id, returnTime, start, driver, car, details));
                                     } else {
-                                        Log.d(returnTime, "N/A");
                                         adapter.add(new SearchTripsList(destination, date, numSeats, id, returnTime, start, driver, car));
                                     }
                                 } else {
-                                    Log.d("in the else", "yess");
                                     if (details != null) {
-                                        Log.d("one way trip", details);
                                         adapter.add(new SearchTripsList(destination, numSeats, date, id, start, driver, car, details));
                                     } else {
-                                        Log.d("one way trip", "N/A");
                                         adapter.add(new SearchTripsList(destination, numSeats, date, id, start, driver, car));
                                     }
                                 }
                                     adapter.notifyDataSetChanged();
                             }
-                        } else { // TODO this does not show up, fix it
                         }
                     }
                 });
@@ -146,14 +133,10 @@ public class SearchTrips extends AppCompatActivity {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (e == null) {
-                    Log.d("This works, thank Jesus", "yessss");
-                    Log.d(String.valueOf(objects.size()), "kleenex");
                     ParseObject result;
                     for (int i = 0; i < objects.size(); i++) {
                         final List<ParseObject> objectsCopy = objects;
                         result = objects.get(i);
-
-                        Log.d("this is the id", result.getObjectId());
 
                         final String destination = result.getString("destination");
                         final int numSeats = result.getInt("availableSeats");
@@ -165,32 +148,22 @@ public class SearchTrips extends AppCompatActivity {
                         String returnTime = "Return time: " + String.valueOf(result.getDate("returnDateAndTime"));
                         String details = String.valueOf(result.getString("details"));
                         if (result.getBoolean("roundTripBool")) {
-                            if (details != null) {
-                                Log.d(returnTime, details);
+                            if (!details.equals("null")) {
                                 adapter.add(new SearchTripsList(destination, numSeats, date, id, returnTime, start, driver, car, details));
                             } else {
-                                Log.d(returnTime, "N/A");
                                 adapter.add(new SearchTripsList(destination, date, numSeats, id, returnTime, start, driver, car));
                             }
                         } else {
-                            Log.d("in the else", "yess");
-                            if (details != null) {
-                                Log.d("one way trip", details);
+                            if (!details.equals("null")) {
                                 adapter.add(new SearchTripsList(destination, numSeats, date, id, start, driver, car, details));
                             } else {
-                                Log.d("one way trip", "N/A");
                                 adapter.add(new SearchTripsList(destination, numSeats, date, id, start, driver, car));
                             }
                         }
                     }
-                } else { // TODO this does not show up, fix it
-                    Log.d("FAILUREEEEEE", "EEEE" + e.getMessage());
-                    // If there are no results, display appropriate message.
                 }
             }
         });
-
-//        query.setLimit(5);
 
         btnAddTrip = (Button) findViewById(R.id.btnAddTrip);
         btnAddTrip.setOnClickListener(new View.OnClickListener() {
@@ -266,19 +239,4 @@ public class SearchTrips extends AppCompatActivity {
                 });
         return true;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

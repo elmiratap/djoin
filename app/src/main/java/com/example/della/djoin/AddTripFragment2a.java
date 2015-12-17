@@ -13,11 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import com.parse.Parse;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,9 +32,6 @@ import java.util.Date;
  */
 public class AddTripFragment2a extends Fragment  {
 
-    private TextView tvAddFrag2;
-
-    private View view;
     private Button nextButton;
     public Fragment addTripFragment3;
     private EditText etDepartureDate;
@@ -152,17 +146,11 @@ public class AddTripFragment2a extends Fragment  {
                     Date dateTimeAsDate = dateFormat.parse(dateTime);
                     if (dateTimeAsDate.before(now)) {
                         Toast.makeText(getActivity(), "Please enter a date in the future.", Toast.LENGTH_LONG).show();
-                    } else { // All inputs ar valid.
+                    } else { // All inputs are valid.
                         // Create new transaction
                         FragmentTransaction trans = getFragmentManager().beginTransaction();
 
-//                    SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm");
-//
-//                    String dateTime = etDepartureDate.getText().toString() + " " + etDepartureTime.getText().toString();
-
-
                         AddTripFragment1.trips.put("departureDateAndTime", dateTimeAsDate);
-//                    AddTripFragment1.trips.put("departureTime", timeFormat.parse(etDepartureTime.getText().toString()));
 
                         // Proceed to the next step.
                         nextFrag = new AddTripFragment3();
@@ -174,7 +162,7 @@ public class AddTripFragment2a extends Fragment  {
                         trans.commit();
                     }
                 } catch (ParseException e) {
-
+                    Log.e("Error: " , e.getMessage());
                 }
 
             }

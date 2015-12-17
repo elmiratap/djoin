@@ -13,7 +13,6 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 public class EditInformation extends Activity implements View.OnClickListener{
-    private EditText etName;
     private EditText etCarColor;
     private EditText etCarMake;
     private Button btnSave;
@@ -22,7 +21,6 @@ public class EditInformation extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_information);
-        etName = (EditText) findViewById(R.id.etName);
         etCarColor = (EditText) findViewById(R.id.etCarColor);
         etCarMake = (EditText) findViewById(R.id.etCarMake);
         btnSave = (Button) findViewById(R.id.btnSave);
@@ -32,7 +30,6 @@ public class EditInformation extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         ParseUser currentUser = ParseUser.getCurrentUser();
-        currentUser.put("name", etName.getText().toString());
         currentUser.put("carColor", etCarColor.getText().toString());
         currentUser.put("carMake", etCarMake.getText().toString());
         currentUser.saveInBackground(new SaveCallback() {

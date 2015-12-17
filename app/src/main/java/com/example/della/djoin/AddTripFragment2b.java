@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +25,12 @@ public class AddTripFragment2b extends Fragment {
 
     View view;
     Button nextButton;
-    Fragment addTripFragment3;
     private EditText etDepartureDate;
     private EditText etDepartureTime;
     private EditText etReturnDate;
     private EditText etReturnTime;
     private Calendar cal;
     private CheckBox cbSameAsDepart;
-    boolean isChecked;
-
 
     public AddTripFragment2b() {
         // Required empty public constructor
@@ -91,16 +87,14 @@ public class AddTripFragment2b extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if(isChecked) {
-                Log.d("check box", "is checked");
                 etReturnDate.setText(etDepartureDate.getText().toString());
-                }
+            }
         }
     };
 
 
     Button.OnClickListener buttonFragmentOnClickListener = new Button.OnClickListener(){
         Fragment nextFrag;
-
 
         @Override
         public void onClick(View v) {
